@@ -191,6 +191,40 @@ FixUP.UI = (function () {
     return count > 0 ? `<span class="notif-dot">${count > 9 ? "9+" : count}</span>` : "";
   }
 
+  // Static illustrated map card — stands in for a live map in this offline prototype.
+  function mapPreview(label, opts = {}) {
+    const h = opts.height || 150;
+    const pins = opts.pins || [{ x: 200, y: 96, me: true }];
+    const pinSvg = (p) => p.me
+      ? `<g class="map-pin-pulse" style="transform-origin:${p.x}px ${p.y}px">
+           <circle cx="${p.x}" cy="${p.y}" r="16" fill="var(--deep-blue)" opacity="0.16"/>
+         </g>
+         <ellipse cx="${p.x}" cy="${p.y + 13}" rx="6" ry="2" fill="#1C2430" opacity="0.12"/>
+         <path d="M${p.x} ${p.y - 12}c-6 0-10 4.3-10 10 0 7 10 16 10 16s10-9 10-16c0-5.7-4-10-10-10Z" fill="var(--deep-blue)"/>
+         <circle cx="${p.x}" cy="${p.y - 2}" r="3.5" fill="#fff"/>`
+      : `<ellipse cx="${p.x}" cy="${p.y + 9}" rx="4" ry="1.5" fill="#1C2430" opacity="0.1"/>
+         <path d="M${p.x} ${p.y - 8}c-4.2 0-7 3-7 7 0 4.8 7 11 7 11s7-6.2 7-11c0-4-2.8-7-7-7Z" fill="var(--mid-blue)"/>
+         <circle cx="${p.x}" cy="${p.y - 1}" r="2.3" fill="#fff"/>`;
+    return `<div style="position:relative;width:100%;height:${h}px;border-radius:16px;overflow:hidden;background:#DCEAE8;border:1px solid var(--border-crisp)">
+      <svg viewBox="0 0 400 ${h}" width="100%" height="100%" preserveAspectRatio="none">
+        <rect width="400" height="${h}" fill="#DCEAE8"/>
+        <rect x="0" y="${h * 0.14}" width="400" height="${h * 0.1}" fill="#CFE1DE"/>
+        <rect x="0" y="${h * 0.62}" width="400" height="${h * 0.08}" fill="#CFE1DE"/>
+        <rect x="60" y="0" width="${h * 0.09}" height="${h}" fill="#CFE1DE"/>
+        <rect x="290" y="0" width="${h * 0.09}" height="${h}" fill="#CFE1DE"/>
+        <rect x="90" y="${h * 0.28}" width="70" height="${h * 0.26}" rx="4" fill="#C8DFDB" opacity="0.7"/>
+        <rect x="230" y="${h * 0.34}" width="90" height="${h * 0.34}" rx="4" fill="#C8DFDB" opacity="0.7"/>
+        <rect x="20" y="${h * 0.72}" width="50" height="${h * 0.2}" rx="4" fill="#C8DFDB" opacity="0.5"/>
+        <circle cx="${pins[0].x}" cy="${pins[0].y}" r="70" fill="none" stroke="var(--mid-blue)" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.55"/>
+        ${pins.map(pinSvg).join("")}
+      </svg>
+      ${label ? `<div style="position:absolute;left:10px;bottom:10px;right:10px;background:rgba(255,255,255,0.94);backdrop-filter:blur(2px);border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:6px;">
+        <span style="width:14px;height:14px;color:var(--deep-blue);flex-shrink:0;display:block">${icon('mapPin')}</span>
+        <span class="text-small" style="font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${label}</span>
+      </div>` : ""}
+    </div>`;
+  }
+
   function stars(n, size = 14) {
     let out = "";
     for (let i = 1; i <= 5; i++) {
@@ -199,7 +233,7 @@ FixUP.UI = (function () {
     return out;
   }
 
-  return { icon, toast, openSheet, closeSheet, updateNavActive, animateCount, stars, notifBadge, categoryTile, jobImage, jobPhotoSrc };
+  return { icon, toast, openSheet, closeSheet, updateNavActive, animateCount, stars, notifBadge, categoryTile, jobImage, jobPhotoSrc, mapPreview };
 })();
 
 /* ---------------- Level-up celebration ---------------- */

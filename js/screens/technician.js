@@ -80,7 +80,7 @@
         <img src="${UI.jobPhotoSrc(job.category)}" alt="" style="width:100%;aspect-ratio:2.2;border-radius:16px;object-fit:cover;margin-bottom:var(--sp-3);display:block">
         <div class="text-h2" style="margin-bottom:6px">${job.title}</div>
         <div class="text-small text-muted" style="margin-bottom:var(--sp-4)">${job.description || ""}</div>
-        <div class="card u-flex u-justify-between" style="margin-bottom:var(--sp-3)"><span class="text-small text-muted">Location</span><span class="text-small" style="font-weight:700">${job.location}</span></div>
+        <div style="margin-bottom:var(--sp-3)">${UI.mapPreview(job.location, { height: 140 })}</div>
         ${job.quote ? `<div class="card u-flex u-justify-between" style="margin-bottom:var(--sp-3)"><span class="text-small text-muted">Fixed quote</span><span class="text-small tabular" style="font-weight:700">${FixUP.fmt.money(job.quote.amount)}</span></div>` : ""}
         <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-6)" data-go="partsMarket">
           <span class="u-flex u-items-center u-gap-2"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('box')}</span><span class="text-small" style="font-weight:700">Need a part? Search the pool</span></span>

@@ -182,6 +182,7 @@
     if (step === 3) {
       const s = FixUP.Store.get();
       el.innerHTML = `<div style="padding:var(--sp-4)">${L.topbar("Location & time", { back: true })}${stepsHtml()}
+        <div style="margin-bottom:var(--sp-4)">${UI.mapPreview(s.users.consumer.location, { height: 150 })}</div>
         <div class="field" style="margin-bottom:var(--sp-4)"><label>Location</label><input type="text" value="${s.users.consumer.location}" data-loc></div>
         <div class="field"><label>Preferred time</label><select data-time><option>As soon as possible</option><option>Today, afternoon</option><option>Tomorrow morning</option></select></div>
       </div>
