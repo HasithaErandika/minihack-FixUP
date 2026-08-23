@@ -237,7 +237,7 @@ FixUP.Layout = (function () {
   const TAB_ALIAS = {
     techJobDetail: "techJobs", jobTracking: "home", instantMatch: "home", quoteReview: "home",
     ratingReview: "home", techProfile: "discover", partDetail: "partsMarket", postListing: "listings",
-    orderDetail: "orders", postRepair: "home", subscription: "earnings"
+    orderDetail: "orders", postRepair: "home"
   };
 
   function topbar(title, { back, actions = [] } = {}) {

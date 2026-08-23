@@ -157,6 +157,110 @@
     };
   });
 
+  /* ---------- Subscription plans (technician & seller) ---------- */
+  const PLANS = {
+    technician: [
+      { name: "Starter", price: 0, desc: "5 free jobs to get started", features: ["5 free repair jobs", "Standard visibility in the job feed"] },
+      { name: "Pro", price: 2500, desc: "Priority matching + full marketplace access", highlight: true, features: ["Unlimited job matching", "Priority placement in the job feed", "Full spare-parts marketplace access", "Points-based material discounts"] },
+      { name: "Business", price: 6000, desc: "For growing repair teams", features: ["Everything in Pro", "Multiple technician seats", "Advanced earnings analytics", "Dedicated support"] }
+    ],
+    seller: [
+      { name: "Starter", price: 0, desc: "List up to 5 items for free", features: ["Up to 5 active listings", "Standard search placement"] },
+      { name: "Growth", price: 3500, desc: "Unlimited listings + priority placement", highlight: true, features: ["Unlimited active listings", "Priority search placement", "Points-discount eligibility for buyers", "Monthly sales insights"] },
+      { name: "Pro", price: 8000, desc: "For established parts suppliers", features: ["Everything in Growth", "Featured storefront", "Bulk inventory tools", "Dedicated account support"] }
+    ]
+  };
+  const PLAN_HOME = { technician: "earnings", seller: "insights" };
+
+  R.register("subscription", (el) => {
+    const s = FixUP.Store.get();
+    const role = s.role === "seller" ? "seller" : "technician";
+    const u = s.users[role];
+    const plans = PLANS[role];
+    const currentName = u.subscription.status === "trial" ? "Starter" : u.subscription.plan;
+    el.innerHTML = `
+      ${L.topbar("Subscription", { back: true })}
+      <div style="padding:0 var(--sp-4)">
+        <div class="text-small text-muted" style="margin-bottom:var(--sp-4)">Keep your full ${role === "seller" ? "sale" : "repair"} income — FixUP earns through subscriptions, not commission.</div>
+        <div class="u-flex-col u-gap-3">
+          ${plans.map(p => {
+            const isCurrent = p.name === currentName;
+            return `
+            <div class="card" style="${p.highlight ? 'border-color:var(--deep-blue);border-width:1.5px' : ''}">
+              <div class="u-flex u-justify-between u-items-center">
+                <span class="text-h2">${p.name}</span>
+                ${isCurrent ? `<span class="chip" style="background:var(--success-bg);color:var(--success)">${icon('checkCircle')} Current</span>` : (p.highlight ? `<span class="chip">Popular</span>` : "")}
+              </div>
+              <div class="text-h1" style="margin:6px 0">${p.price === 0 ? "Free" : FixUP.fmt.money(p.price) + "/mo"}</div>
+              <div class="text-small text-muted" style="margin-bottom:12px">${p.desc}</div>
+              <div class="u-flex-col u-gap-2" style="margin-bottom:${isCurrent || p.price === 0 ? '0' : '14px'}">
+                ${p.features.map(f => `<div class="u-flex u-items-center u-gap-2"><span style="color:var(--success);width:16px;height:16px;flex-shrink:0">${icon('check')}</span><span class="text-small text-soft">${f}</span></div>`).join("")}
+              </div>
+              ${!isCurrent && p.price > 0 ? `<button class="btn ${p.highlight ? 'btn-primary' : 'btn-secondary'} btn-block btn-sm" data-select="${p.name}" data-price="${p.price}">Choose ${p.name}</button>` : ""}
+            </div>`;
+          }).join("")}
+        </div>
+      </div>`;
+    el.querySelector("[data-nav-back]").onclick = () => R.back();
+    el.querySelectorAll("[data-select]").forEach(b => b.onclick = () => R.go("planCheckout", { role, plan: b.dataset.select, price: b.dataset.price }));
+  });
+
+  /* ---------- Plan checkout (mock payment) ---------- */
+  R.register("planCheckout", (el, params) => {
+    const price = +params.price;
+    el.innerHTML = `
+      ${L.topbar("Checkout", { back: true })}
+      <div style="padding:0 var(--sp-4)">
+        <div class="card" style="margin-bottom:var(--sp-4)">
+          <div class="u-flex u-justify-between u-items-center" style="margin-bottom:4px">
+            <span class="text-small text-muted">Plan</span><span class="text-body" style="font-weight:700">${params.plan}</span>
+          </div>
+          <div class="u-flex u-justify-between u-items-center">
+            <span class="text-small text-muted">Billed monthly</span><span class="text-h2 tabular">${FixUP.fmt.money(price)}</span>
+          </div>
+        </div>
+
+        <div class="text-h2" style="margin-bottom:var(--sp-2)">Payment method</div>
+        <div class="card u-flex u-items-center u-gap-3" style="margin-bottom:var(--sp-3);border-color:var(--deep-blue);border-width:1.5px">
+          <span style="width:38px;height:26px;border-radius:6px;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;">VISA</span>
+          <span style="flex:1"><div class="text-small" style="font-weight:700">Visa •••• 4242</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">Expires 09/28</div></span>
+          <span style="color:var(--deep-blue)">${icon('checkCircle')}</span>
+        </div>
+        <button class="btn btn-ghost btn-sm" style="margin-bottom:var(--sp-6)" data-add-card>${icon('plus')} Add payment method</button>
+
+        <div class="card card--tint u-flex u-gap-2" style="align-items:flex-start">
+          <span style="color:var(--deep-blue)">${icon('info')}</span>
+          <span class="text-small">You can cancel or switch plans any time from Subscription settings.</span>
+        </div>
+      </div>
+      <div style="position:sticky;bottom:0;padding:var(--sp-3) var(--sp-4);background:var(--cream);border-top:1px solid var(--border);">
+        <button class="btn btn-primary btn-block" data-pay>Pay ${FixUP.fmt.money(price)}</button>
+      </div>`;
+    el.querySelector("[data-nav-back]").onclick = () => R.back();
+    el.querySelector("[data-add-card]").onclick = () => UI.toast("Demo only — one saved card", "info");
+    el.querySelector("[data-pay]").onclick = (e) => {
+      e.target.classList.add("btn-loading");
+      setTimeout(() => {
+        A.subscribeToPlan(params.role, params.plan, price);
+        R.replaceStack("checkoutSuccess", { role: params.role, plan: params.plan });
+      }, 800);
+    };
+  });
+
+  R.register("checkoutSuccess", (el, params) => {
+    el.innerHTML = `
+      <div class="state-block" style="padding-top:var(--sp-10)">
+        <div class="check-pulse">${icon('checkCircle')}</div>
+        <div class="text-h1">You're on ${params.plan}</div>
+        <div class="state-block__desc">Your subscription is active. Full platform access is unlocked — no commission on your earnings.</div>
+        <button class="btn btn-primary btn-block" style="margin-top:var(--sp-4)" data-done>Done</button>
+      </div>`;
+    el.querySelector("[data-done]").onclick = () => {
+      R.replaceStack(PLAN_HOME[params.role] || "profile");
+      UI.toast(`Subscribed to ${params.plan}`, "checkCircle");
+    };
+  });
+
   /* ---------- Notifications ---------- */
   R.register("notifications", (el) => {
     const s = FixUP.Store.get();

@@ -102,11 +102,11 @@
         <div class="u-flex-col u-gap-2" style="margin-bottom:var(--sp-4)">
           ${top.map(l => `<div class="card u-flex u-justify-between"><span class="text-small" style="font-weight:600">${l.title}</span><span class="text-small tabular">${FixUP.fmt.money(l.price)}</span></div>`).join("")}
         </div>
-        <div class="card card--tint u-flex u-items-center u-justify-between">
-          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--deep-blue)">${icon('shield')}</span><span class="text-small" style="font-weight:700">Seller plan: Growth</span></span>
-          <button class="text-small" style="color:var(--deep-blue);font-weight:700" data-manage>Manage</button>
-        </div>
+        <button class="card card--tint card--pressable u-flex u-items-center u-justify-between" style="width:100%" data-go="subscription">
+          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--deep-blue)">${icon('shield')}</span><span class="text-small" style="font-weight:700">Seller plan: ${u.subscription.plan}</span></span>
+          <span class="u-flex u-items-center u-gap-1" style="color:var(--deep-blue);font-weight:700"><span class="text-small">Manage</span>${icon('chevronRight')}</span>
+        </button>
       </div>`;
-    el.querySelector("[data-manage]").onclick = () => UI.toast("Seller subscription plans coming soon", "info");
+    el.querySelector("[data-go]").onclick = () => R.go("subscription");
   });
 })();
