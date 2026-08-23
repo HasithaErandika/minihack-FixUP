@@ -1,0 +1,8 @@
+/* Small screen-level layout tweaks that don't belong in the shared component library. */
+.screen { -ms-overflow-style: none; }
+
+/* horizontal card rails (recommended technicians, etc.) */
+.screen ::-webkit-scrollbar { display: none; }
+
+/* keep sticky action bars above scrolled content but under sheets/toasts */
+.screen > div[style*="position:sticky"] { z-index: 20; }

@@ -1,0 +1,222 @@
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+ul[class], ol[class] { list-style: none; margin: 0; padding: 0; }
+img, picture { max-width: 100%; display: block; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: none; }
+a { color: inherit; text-decoration: none; }
+svg { display: block; }
+
+/* ---------- Page backdrop ---------- */
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(180deg, #DDE6EC 0%, #E9E4D6 100%);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-8) var(--sp-4);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-6);
+}
+
+.stage__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  color: var(--indigo);
+  letter-spacing: -0.01em;
+}
+.stage__brand .logo-mark { width: 26px; height: 26px; }
+.stage__hint {
+  font-size: var(--fs-small);
+  color: var(--ink-faint);
+  text-align: center;
+  max-width: 340px;
+}
+
+/* ---------- Phone frame ---------- */
+.phone {
+  position: relative;
+  width: var(--phone-width);
+  height: var(--phone-height);
+  background: #0B0E14;
+  border-radius: 52px;
+  padding: 14px;
+  box-shadow: var(--shadow-overlay), 0 1px 0 rgba(255,255,255,0.4) inset;
+}
+
+.phone__screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--cream);
+  border-radius: 38px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.phone__notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 26px;
+  background: #0B0E14;
+  border-radius: 0 0 18px 18px;
+  z-index: 50;
+}
+
+.phone__home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: rgba(28,36,48,0.35);
+  z-index: 50;
+}
+
+/* ---------- Status bar ---------- */
+.statusbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px var(--sp-6) 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.statusbar__icons { display: flex; align-items: center; gap: 5px; }
+
+/* ---------- App shell ---------- */
+.app-shell {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.screen-viewport {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: var(--sp-8);
+}
+.screen::-webkit-scrollbar { display: none; }
+
+.screen[hidden] { display: none; }
+
+/* screen transition states, toggled by router.js */
+.screen--entering-fwd { animation: slideInFromRight var(--dur-base) var(--ease-out); }
+.screen--entering-back { animation: slideInFromLeft var(--dur-base) var(--ease-out); }
+
+@keyframes slideInFromRight {
+  from { transform: translateX(24px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideInFromLeft {
+  from { transform: translateX(-24px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ---------- Top app bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-4) var(--sp-3);
+}
+.topbar__title {
+  flex: 1;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.topbar__action { position: relative; }
+
+/* ---------- Bottom nav ---------- */
+.bottom-nav {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 8px var(--sp-2) 14px;
+  position: relative;
+  z-index: 40;
+}
+.bottom-nav[hidden] { display: none; }
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--ink-faint);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  transition: color var(--dur-fast) var(--ease-out);
+  position: relative;
+}
+.nav-item svg { width: 21px; height: 21px; stroke-width: 1.7; transition: transform var(--dur-fast) var(--ease-out); }
+.nav-item span { font-size: 10.5px; font-weight: 600; letter-spacing: 0.01em; }
+.nav-item.is-active { color: var(--deep-blue); }
+.nav-item.is-active svg { stroke-width: 2; }
+.nav-item:active svg { transform: scale(0.9); }
+
+/* ---------- Typography helpers ---------- */
+.text-display { font-size: var(--fs-display); line-height: var(--lh-display); font-weight: 700; letter-spacing: -0.02em; }
+.text-h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); font-weight: 700; letter-spacing: -0.01em; }
+.text-h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: 700; }
+.text-body { font-size: var(--fs-body); line-height: var(--lh-body); font-weight: 400; }
+.text-small { font-size: var(--fs-small); line-height: var(--lh-small); font-weight: 500; }
+.text-micro { font-size: var(--fs-micro); line-height: var(--lh-micro); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.text-muted { color: var(--ink-faint); }
+.text-soft { color: var(--ink-soft); }
+.tabular { font-variant-numeric: tabular-nums; }
+
+.u-flex { display: flex; }
+.u-flex-col { display: flex; flex-direction: column; }
+.u-items-center { align-items: center; }
+.u-justify-between { justify-content: space-between; }
+.u-gap-1 { gap: var(--sp-1); }
+.u-gap-2 { gap: var(--sp-2); }
+.u-gap-3 { gap: var(--sp-3); }
+.u-gap-4 { gap: var(--sp-4); }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

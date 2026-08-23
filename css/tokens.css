@@ -1,0 +1,81 @@
+:root {
+  /* Primary palette */
+  --deep-blue: #3368A0;
+  --mid-blue: #66A3BF;
+  --sage: #C8DFDB;
+  --cream: #FFFFFF;
+
+  /* Secondary palette */
+  --indigo: #293681;
+  --royal: #4274D9;
+  --sky: #95CCDD;
+  --mint: #D0E7E6;
+
+  /* Neutrals derived to sit with the warm cream base */
+  --ink: #1C2430;
+  --ink-soft: #4A5568;
+  --ink-faint: #8792A2;
+  --surface: #FFFFFF;
+  --surface-sunken: #EAE6DA;
+  --border: rgba(28, 36, 48, 0.10);
+  --border-strong: rgba(28, 36, 48, 0.18);
+  --border-crisp: rgba(28, 36, 48, 0.13);
+
+  /* Functional (muted, used sparingly) */
+  --success: #4C8B6B;
+  --success-bg: #E4F1E8;
+  --warning: #B8823A;
+  --warning-bg: #FBF0DF;
+  --danger: #B24B4B;
+  --danger-bg: #FBE7E7;
+
+  /* Type scale */
+  --font-family: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fs-display: 28px;
+  --lh-display: 34px;
+  --fs-h1: 22px;
+  --lh-h1: 28px;
+  --fs-h2: 18px;
+  --lh-h2: 24px;
+  --fs-body: 15px;
+  --lh-body: 22px;
+  --fs-small: 13px;
+  --lh-small: 18px;
+  --fs-micro: 11px;
+  --lh-micro: 14px;
+
+  /* Spacing scale */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+
+  /* Radii */
+  --radius-card: 18px;
+  --radius-btn: 12px;
+  --radius-input: 12px;
+  --radius-pill: 999px;
+  --radius-sm: 8px;
+
+  /* Elevation — used sparingly: floating controls and true overlays only, never resting cards */
+  --shadow-float: 0 1px 2px rgba(28, 36, 48, 0.06), 0 6px 16px rgba(28, 36, 48, 0.10);
+  --shadow-overlay: 0 12px 32px rgba(20, 26, 36, 0.16);
+  --focus-ring: 0 0 0 3px rgba(51, 104, 160, 0.16);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-count: 700ms;
+
+  /* Brand gradient — reserved for onboarding hero + level-up only */
+  --gradient-brand: linear-gradient(135deg, var(--deep-blue) 0%, var(--royal) 100%);
+
+  /* Device frame */
+  --phone-width: 390px;
+  --phone-height: 844px;
+}
