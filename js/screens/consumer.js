@@ -12,7 +12,10 @@
     el.innerHTML = `
       <div style="padding:var(--sp-6) var(--sp-4) 0;">
         <div class="u-flex u-justify-between u-items-center" style="margin-bottom:var(--sp-4)">
-          <div><div class="text-small text-muted">Good to see you,</div><div class="text-h1">${u.name.split(" ")[0]}</div></div>
+          <div class="u-flex u-items-center u-gap-2">
+            <img src="assets/logo-mark.png" alt="" style="width:22px;height:auto;flex-shrink:0">
+            <div><div class="text-small text-muted">Good to see you,</div><div class="text-h1">${u.name.split(" ")[0]}</div></div>
+          </div>
           <div class="u-flex u-gap-2">
             <button class="btn-icon" data-go="messages">${icon('message')}</button>
             <button class="btn-icon" data-go="notifications">${icon('bell')}${UI.notifBadge(s.notifications.filter(n => !n.read).length)}</button>
@@ -25,7 +28,7 @@
             <div class="text-small" style="opacity:0.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${lvl.levelName} · ${u.impact.points.toLocaleString()} pts</div>
             <div class="progress-bar" style="background:rgba(255,255,255,0.25);margin-top:6px"><div class="progress-bar__fill" style="width:${lvl.pct}%;background:#fff"></div></div>
           </div>
-          <span style="opacity:0.85;flex-shrink:0">${icon('chevronRight')}</span>
+          <span style="opacity:0.85;flex-shrink:0;width:18px;height:18px;display:block">${icon('chevronRight')}</span>
         </button>
 
         <button class="btn btn-primary btn-block" style="margin-top:var(--sp-4)" data-go="postRepair"><span style="width:18px;height:18px;display:block">${icon('plus')}</span> Post a repair request</button>
@@ -64,7 +67,7 @@
     const t = s.technicians.find(t => t.id === j.technicianId);
     const statusClass = { matching: "progress", confirmed: "open", "in-progress": "progress", completed: "done", requested: "open" }[j.status] || "open";
     return `<button class="card card--pressable u-flex u-items-center u-gap-3" style="width:100%;text-align:left" data-open-job="${j.id}">
-      <span style="width:40px;height:40px;border-radius:12px;background:var(--mint);color:var(--deep-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${icon('wrench')}</span>
+      <span style="width:22px;height:22px;color:var(--deep-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${icon('wrench')}</span>
       <span style="flex:1"><div class="text-small" style="font-weight:700">${j.title}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${t ? t.name : "Matching..."}</div></span>
       <span class="status-badge status-badge--${statusClass}">${j.status.replace("-", " ")}</span>
     </button>`;
@@ -84,8 +87,8 @@
               <div class="text-micro" style="text-transform:none;letter-spacing:0;font-weight:600">${c.label}</div>
             </button>`).join("")}
         </div>
-        <div class="text-h2" style="margin-bottom:var(--sp-2)">Featured technicians</div>
-        <div class="u-flex-col u-gap-2">${s.technicians.map(t => techRow(t)).join("")}</div>
+        <div class="text-h2" style="margin-bottom:var(--sp-3)">Featured technicians</div>
+        <div class="u-flex-col u-gap-3">${s.technicians.map(t => techRow(t)).join("")}</div>
       </div>`;
     el.querySelectorAll("[data-open-tech]").forEach(b => b.onclick = () => R.go("techProfile", { id: b.dataset.openTech }));
     el.querySelector("[data-filter]").onclick = () => UI.openSheet("filterSheet");
@@ -142,10 +145,10 @@
 
   /* ---------- Post repair request (multi-step) ---------- */
   const CATS = [
-    { key: "phone", label: "Phone", icon: "wrench" }, { key: "laptop", label: "Laptop", icon: "wrench" },
-    { key: "fridge", label: "Fridge", icon: "box" }, { key: "washer", label: "Washing Machine", icon: "box" },
-    { key: "tv", label: "TV", icon: "wrench" }, { key: "garment", label: "Garment", icon: "leaf" },
-    { key: "vehicle", label: "Vehicle", icon: "wrench" }, { key: "other", label: "Other", icon: "box" }
+    { key: "phone", label: "Phone", img: "electronics" }, { key: "laptop", label: "Laptop", img: "electronics" },
+    { key: "fridge", label: "Fridge", img: "appliances" }, { key: "washer", label: "Washing Machine", img: "appliances" },
+    { key: "tv", label: "TV", img: "electronics" }, { key: "garment", label: "Garment", img: "garment" },
+    { key: "vehicle", label: "Vehicle", img: "vehicle" }, { key: "other", label: "Other", img: "other" }
   ];
   R.register("postRepair", (el, params) => {
     const step = params.step || 1;
@@ -156,8 +159,8 @@
       el.innerHTML = `<div style="padding:var(--sp-4)">${L.topbar("Post a repair", { back: true })}${stepsHtml()}
         <div class="text-h2" style="margin-bottom:var(--sp-4)">What needs fixing?</div>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2)">
-          ${CATS.map(c => `<button class="card card--pressable" data-cat="${c.key}" style="text-align:center;padding:16px 8px">
-            <div style="width:28px;height:28px;color:var(--deep-blue);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">${icon(c.icon)}</div>
+          ${CATS.map(c => `<button class="card card--pressable" data-cat="${c.key}" style="text-align:center;padding:12px 8px 14px">
+            <img src="assets/illustrations/${c.img}.svg" alt="" style="width:100%;aspect-ratio:2;border-radius:10px;object-fit:cover;margin-bottom:6px;display:block">
             <div class="text-small" style="font-weight:600">${c.label}</div></button>`).join("")}
         </div></div>`;
       el.querySelector("[data-nav-back]").onclick = () => R.back();
@@ -197,7 +200,7 @@
         <div class="text-small text-muted">${draft.description || ""}</div>
       </div>
       <div class="card card--tint u-flex u-gap-2" style="align-items:flex-start">
-        <span style="color:var(--deep-blue)">${icon('leaf')}</span>
+        <span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('leaf')}</span>
         <span class="text-small">Choosing repair here could avoid up to <b>${FixUP.impactFactors[draft.category]?.co2Kg || 60}kg CO₂</b> vs. buying new.</span>
       </div>
     </div>
@@ -261,7 +264,7 @@
           <div class="u-flex u-justify-between"><span class="text-body" style="font-weight:700">Total</span><span class="text-h2 tabular">${FixUP.fmt.money(amount)}</span></div>
         </div>
         <div class="card card--tint u-flex u-gap-2" style="align-items:flex-start;margin-bottom:var(--sp-6)">
-          <span style="color:var(--deep-blue)">${icon('recycle')}</span>
+          <span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('recycle')}</span>
           <span class="text-small">Avoids ~${factor.ewasteKg}kg e-waste and ~${factor.co2Kg}kg CO₂ vs. replacing.</span>
         </div>
       </div>
@@ -300,7 +303,7 @@
           <button class="btn-icon" data-msg>${icon('message')}</button>
         </div>` : ""}
         ${job.quote ? `<div class="card u-flex u-justify-between" style="margin-bottom:var(--sp-4)"><span class="text-small text-muted">Fixed quote</span><span class="text-body tabular" style="font-weight:700">${FixUP.fmt.money(job.quote.amount)}</span></div>` : ""}
-        ${job.status === "in-progress" ? `<div class="card card--tint u-flex u-gap-2" style="align-items:flex-start;margin-bottom:var(--sp-4)"><span style="color:var(--deep-blue)">${icon('box')}</span><span class="text-small">Sourcing part from the spare-parts pooling network...</span></div>` : ""}
+        ${job.status === "in-progress" ? `<div class="card card--tint u-flex u-gap-2" style="align-items:flex-start;margin-bottom:var(--sp-4)"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('box')}</span><span class="text-small">Sourcing part from the spare-parts pooling network...</span></div>` : ""}
       </div>
       ${job.status !== "completed" ? `<div style="position:sticky;bottom:0;padding:var(--sp-3) var(--sp-4);background:var(--cream);"><button class="btn btn-primary btn-block" data-advance>${advanceLabel(job.status)}</button></div>` : ""}`;
     el.querySelector("[data-nav-back]").onclick = () => R.back();

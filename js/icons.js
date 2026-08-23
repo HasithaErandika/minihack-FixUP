@@ -1,4 +1,4 @@
-/* Inline SVG icon set — stroke-based, 1.5-2px stroke, rounded caps. One shared style across the app. */
+/* Inline SVG icon set: stroke-based, 1.5-2px stroke, rounded caps. One shared style across the app. */
 window.FixUP = window.FixUP || {};
 
 const svg = (paths, vb = "0 0 24 24") =>

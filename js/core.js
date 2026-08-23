@@ -127,7 +127,7 @@ FixUP.UI = (function () {
   function toast(msg, iconName) {
     const host = document.getElementById("toastHost");
     if (!host) return;
-    host.innerHTML = `${iconName ? icon(iconName) : ""}<span>${msg}</span>`;
+    host.innerHTML = `${iconName ? `<span style="width:15px;height:15px;display:block;flex-shrink:0">${icon(iconName)}</span>` : ""}<span>${msg}</span>`;
     host.classList.add("is-visible");
     clearTimeout(host._t);
     host._t = setTimeout(() => host.classList.remove("is-visible"), 2200);
@@ -158,16 +158,16 @@ FixUP.UI = (function () {
   }
 
   const CATEGORY_VISUAL = {
-    Electronics: { icon: "wrench", bg: "var(--sky)", fg: "var(--indigo)" },
-    Appliances: { icon: "box", bg: "var(--mint)", fg: "var(--deep-blue)" },
-    Vehicles: { icon: "wrench", bg: "var(--sage)", fg: "var(--deep-blue)" },
-    Garments: { icon: "leaf", bg: "var(--mint)", fg: "var(--deep-blue)" }
+    Electronics: "assets/illustrations/electronics.svg",
+    Appliances: "assets/illustrations/appliances.svg",
+    Vehicles: "assets/illustrations/vehicle.svg",
+    Garments: "assets/illustrations/garment.svg"
   };
   function categoryTile(category, size) {
-    const v = CATEGORY_VISUAL[category] || { icon: "box", bg: "var(--sky)", fg: "var(--indigo)" };
+    const src = CATEGORY_VISUAL[category] || "assets/illustrations/other.svg";
     const s = size || 48;
-    const iconSize = Math.round(s * 0.46);
-    return `<span style="width:${s}px;height:${s}px;border-radius:${Math.round(s * 0.3)}px;background:${v.bg};color:${v.fg};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="width:${iconSize}px;height:${iconSize}px;display:block">${icon(v.icon)}</span></span>`;
+    const r = Math.round(s * 0.3);
+    return `<img src="${src}" alt="${category || 'Item'}" style="width:${s}px;height:${s}px;border-radius:${r}px;flex-shrink:0;object-fit:cover;">`;
   }
 
   function notifBadge(count) {

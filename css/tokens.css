@@ -60,7 +60,7 @@
   --radius-pill: 999px;
   --radius-sm: 8px;
 
-  /* Elevation — used sparingly: floating controls and true overlays only, never resting cards */
+  /* Elevation: used sparingly for floating controls and true overlays only, never resting cards */
   --shadow-float: 0 1px 2px rgba(28, 36, 48, 0.06), 0 6px 16px rgba(28, 36, 48, 0.10);
   --shadow-overlay: 0 12px 32px rgba(20, 26, 36, 0.16);
   --focus-ring: 0 0 0 3px rgba(51, 104, 160, 0.16);
@@ -72,7 +72,7 @@
   --dur-base: 240ms;
   --dur-count: 700ms;
 
-  /* Brand gradient — reserved for onboarding hero + level-up only */
+  /* Brand gradient: reserved for onboarding hero + level-up only */
   --gradient-brand: linear-gradient(135deg, var(--deep-blue) 0%, var(--royal) 100%);
 
   /* Device frame */

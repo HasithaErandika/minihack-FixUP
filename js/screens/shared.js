@@ -15,8 +15,8 @@
 
   /* ---------- Onboarding carousel ---------- */
   const SLIDES = [
-    { icon: "wrench", title: "Repair, not replace", desc: "Find trustworthy, verified technicians for anything worth fixing — electronics, appliances, vehicles, garments." },
-    { icon: "shield", title: "Verified technicians you can trust", desc: "ID checks, skill assessments, and real reviews — no more guessing who's letting into your home." },
+    { icon: "wrench", title: "Repair, not replace", desc: "Find trustworthy, verified technicians for anything worth fixing: electronics, appliances, vehicles, garments." },
+    { icon: "shield", title: "Verified technicians you can trust", desc: "ID checks, skill assessments, and real reviews, so there's no more guessing who's letting into your home." },
     { icon: "leaf", title: "Every fix has an impact", desc: "Track e-waste avoided, CO₂ saved, and watch your impact score grow with every repair." }
   ];
   R.register("onboarding", (el, params) => {
@@ -89,7 +89,7 @@
         <img src="assets/logo-mark.png" alt="" style="width:30px;height:auto;margin:var(--sp-1) 0 var(--sp-5);">
         <button class="chip" data-change-role style="background:var(--${meta.tint});color:var(--${meta.ink});margin-bottom:var(--sp-4);">${icon(meta.icon)} Signing up as ${role[0].toUpperCase() + role.slice(1)}</button>
         <div class="text-h1" style="margin-bottom:4px;">Create your account</div>
-        <div class="text-body text-muted" style="margin-bottom:var(--sp-6);">Just for this demo — prefilled with a sample profile.</div>
+        <div class="text-body text-muted" style="margin-bottom:var(--sp-6);">Just for this demo, prefilled with a sample profile.</div>
         <div class="u-flex-col u-gap-4">
           <div class="field">
             <label>Full name</label>
@@ -132,14 +132,14 @@
         ${L.topbar("Get verified")}
         <div class="text-body text-muted" style="margin:0 var(--sp-2) var(--sp-6);">Verification builds the trust score consumers see on your profile.</div>
         <div class="u-flex-col u-gap-3" style="padding:0 var(--sp-2)">
-          <div class="card u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('shield')}</span><div><div class="text-body" style="font-weight:700">ID verification</div><div class="text-small text-muted">Upload a government-issued ID</div></div></div>
+          <div class="card u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('shield')}</span><div><div class="text-body" style="font-weight:700">ID verification</div><div class="text-small text-muted">Upload a government-issued ID</div></div></div>
           <div style="display:flex;justify-content:center;padding:var(--sp-2) 0">
             <div style="width:96px;height:96px;border-radius:50%;border:1.5px dashed var(--border-strong);background:var(--surface-sunken);display:flex;align-items:center;justify-content:center;color:var(--ink-faint)">
               <span style="width:26px;height:26px;display:block">${icon('camera')}</span>
             </div>
           </div>
-          <div class="card u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('wrench')}</span><div><div class="text-body" style="font-weight:700">Skill assessment</div><div class="text-small text-muted">Electronics & Appliances — short quiz</div></div></div>
-          <div class="card u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('medal')}</span><div><div class="text-body" style="font-weight:700">VTA certification</div><div class="text-small text-muted">Optional — boosts your trust score</div></div></div>
+          <div class="card u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('wrench')}</span><div><div class="text-body" style="font-weight:700">Skill assessment</div><div class="text-small text-muted">Electronics & Appliances quiz</div></div></div>
+          <div class="card u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('medal')}</span><div><div class="text-body" style="font-weight:700">VTA certification</div><div class="text-small text-muted">Optional, boosts your trust score</div></div></div>
         </div>
         <button class="btn btn-primary btn-block" style="margin-top:var(--sp-6);" data-submit>Submit for review</button>
       </div>`;
@@ -185,7 +185,7 @@
     el.innerHTML = `
       ${L.topbar("Subscription", { back: true })}
       <div style="padding:0 var(--sp-4)">
-        <div class="text-small text-muted" style="margin-bottom:var(--sp-4)">Keep your full ${role === "seller" ? "sale" : "repair"} income — FixUP earns through subscriptions, not commission.</div>
+        <div class="text-small text-muted" style="margin-bottom:var(--sp-4)">Keep your full ${role === "seller" ? "sale" : "repair"} income. FixUP earns through subscriptions, not commission.</div>
         <div class="u-flex-col u-gap-3">
           ${plans.map(p => {
             const isCurrent = p.name === currentName;
@@ -228,12 +228,12 @@
         <div class="card u-flex u-items-center u-gap-3" style="margin-bottom:var(--sp-3);border-color:var(--deep-blue);border-width:1.5px">
           <span style="width:38px;height:26px;border-radius:6px;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;">VISA</span>
           <span style="flex:1"><div class="text-small" style="font-weight:700">Visa •••• 4242</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">Expires 09/28</div></span>
-          <span style="color:var(--deep-blue)">${icon('checkCircle')}</span>
+          <span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('checkCircle')}</span>
         </div>
-        <button class="btn btn-ghost btn-sm" style="margin-bottom:var(--sp-6)" data-add-card>${icon('plus')} Add payment method</button>
+        <button class="btn btn-ghost btn-sm" style="margin-bottom:var(--sp-6)" data-add-card><span style="width:15px;height:15px;display:block">${icon('plus')}</span> Add payment method</button>
 
         <div class="card card--tint u-flex u-gap-2" style="align-items:flex-start">
-          <span style="color:var(--deep-blue)">${icon('info')}</span>
+          <span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('info')}</span>
           <span class="text-small">You can cancel or switch plans any time from Subscription settings.</span>
         </div>
       </div>
@@ -241,7 +241,7 @@
         <button class="btn btn-primary btn-block" data-pay>Pay ${FixUP.fmt.money(price)}</button>
       </div>`;
     el.querySelector("[data-nav-back]").onclick = () => R.back();
-    el.querySelector("[data-add-card]").onclick = () => UI.toast("Demo only — one saved card", "info");
+    el.querySelector("[data-add-card]").onclick = () => UI.toast("Demo only: one saved card", "info");
     el.querySelector("[data-pay]").onclick = (e) => {
       e.target.classList.add("btn-loading");
       setTimeout(() => {
@@ -256,7 +256,7 @@
       <div class="state-block" style="padding-top:var(--sp-10)">
         <div class="check-pulse">${icon('checkCircle')}</div>
         <div class="text-h1">You're on ${params.plan}</div>
-        <div class="state-block__desc">Your subscription is active. Full platform access is unlocked — no commission on your earnings.</div>
+        <div class="state-block__desc">Your subscription is active. Full platform access is unlocked, with no commission on your earnings.</div>
         <button class="btn btn-primary btn-block" style="margin-top:var(--sp-4)" data-done>Done</button>
       </div>`;
     el.querySelector("[data-done]").onclick = () => {
@@ -272,7 +272,7 @@
     const cardRow = `<div class="card u-flex u-items-center u-gap-3">
       <span style="width:38px;height:26px;border-radius:6px;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;">VISA</span>
       <span style="flex:1"><div class="text-small" style="font-weight:700">Visa •••• 4242</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">Expires 09/28</div></span>
-      <span style="color:var(--deep-blue)">${icon('checkCircle')}</span>
+      <span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('checkCircle')}</span>
     </div>`;
     el.innerHTML = `
       ${L.topbar("Payment methods", { back: true })}
@@ -283,7 +283,7 @@
           <div class="card u-flex u-items-center u-gap-3" style="margin-bottom:var(--sp-6)">
             <span style="width:38px;height:38px;border-radius:10px;background:var(--mint);color:var(--deep-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${icon('wallet')}</span>
             <span style="flex:1"><div class="text-small" style="font-weight:700">Commercial Bank •••• 4821</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">Savings account</div></span>
-            <span style="color:var(--deep-blue)">${icon('checkCircle')}</span>
+            <span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('checkCircle')}</span>
           </div>
           <div class="text-h2" style="margin-bottom:var(--sp-2)">Billing method</div>
           <div class="text-small text-muted" style="margin-bottom:var(--sp-3)">Used for your subscription plan.</div>
@@ -295,7 +295,7 @@
         <button class="btn btn-ghost" style="margin-top:var(--sp-4)" data-add><span style="width:16px;height:16px;display:block">${icon('plus')}</span> Add payment method</button>
       </div>`;
     el.querySelector("[data-nav-back]").onclick = () => R.back();
-    el.querySelector("[data-add]").onclick = () => UI.toast("Demo only — one saved method", "info");
+    el.querySelector("[data-add]").onclick = () => UI.toast("Demo only: one saved method", "info");
   });
 
   /* ---------- Notifications ---------- */
@@ -381,11 +381,17 @@
       ${L.topbar("Your Impact", { back: true, actions: [{ action: "info", icon: "info" }] })}
       <div style="padding:0 var(--sp-4)">
         <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);padding:var(--sp-6);background:#EAF3EC;border-color:transparent;">
+          <svg viewBox="0 0 40 40" class="ambient-drift" style="width:40px;height:40px;margin-bottom:2px">
+            <path d="M20 34V20" stroke="#3E7A57" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M20 20C20 20 10 20 10 8C17 8 20 13 20 20Z" fill="#66A37F"/>
+            <path d="M20 24C20 24 30 24 30 12C23 12 20 17 20 24Z" fill="#4C8B6B"/>
+            <ellipse cx="20" cy="35" rx="9" ry="2.5" fill="#C8DFDB"/>
+          </svg>
           <div class="ring-progress" style="width:132px;height:132px;">
             <svg width="132" height="132"><circle class="ring-progress__track" cx="66" cy="66" r="${r}" stroke-width="10"/><circle class="ring-progress__fill" id="ring" cx="66" cy="66" r="${r}" stroke-width="10" style="stroke:#4C8B6B" stroke-dasharray="${c}" stroke-dashoffset="${c}"/></svg>
             <div class="ring-progress__label"><div class="text-h1" id="ringPts">0</div><div class="text-micro text-muted">points</div></div>
           </div>
-          <div class="level-badge ambient-drift" style="max-width:100%;background:#3E7A57">${icon('leaf')} ${lvl.levelName}</div>
+          <div class="level-badge ambient-drift" style="max-width:100%;background:#3E7A57">${icon('tree')} ${lvl.levelName}</div>
           <div class="text-small text-muted">${lvl.isMax ? "Top tier reached" : `${lvl.pointsForLevel - lvl.pointsIntoLevel} pts to ${lvl.nextLevelName}`}</div>
         </div>
 
@@ -411,8 +417,8 @@
         </div>
 
         <button class="card card--pressable u-flex u-items-center u-justify-between" style="margin-top:var(--sp-4);width:100%;" data-go="leaderboard">
-          <span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('trophy')}</span><span class="text-body" style="font-weight:700">Leaderboard</span></span>
-          <span style="color:var(--ink-faint)">${icon('chevronRight')}</span>
+          <span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('trophy')}</span><span class="text-body" style="font-weight:700">Leaderboard</span></span>
+          <span style="color:var(--ink-faint);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('chevronRight')}</span>
         </button>
       </div>`;
     el.querySelectorAll("[data-go]").forEach(b => b.onclick = () => R.go(b.dataset.go));
@@ -476,7 +482,7 @@
     el.innerHTML = `
       ${L.topbar("Leaderboard", { back: true })}
       <div style="padding:0 var(--sp-4)">
-        <div class="text-small text-muted" style="margin-bottom:var(--sp-3)">${isC ? "Ranked by impact points this season" : "Ranked by job volume and rating — not just speed"}</div>
+        <div class="text-small text-muted" style="margin-bottom:var(--sp-3)">${isC ? "Ranked by impact points this season" : "Ranked by job volume and rating, not just speed"}</div>
         <div class="u-flex-col u-gap-2">
           ${list.map((p, i) => `
             <div class="card" style="display:flex;align-items:center;gap:var(--sp-3);${p.isMe ? 'border-color:var(--deep-blue);background:var(--mint);' : ''}">
@@ -534,7 +540,7 @@
         ` : ""}
 
         ${s.role === "consumer" ? `
-          <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-3)" data-go="saved"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('bookmark')}</span><span class="text-body" style="font-weight:700">Saved items</span></span><span style="color:var(--ink-faint)">${icon('chevronRight')}</span></button>
+          <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-3)" data-go="saved"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('bookmark')}</span><span class="text-body" style="font-weight:700">Saved items</span></span><span style="color:var(--ink-faint);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('chevronRight')}</span></button>
         ` : ""}
         ${isSeller ? `
           <div class="text-h2" style="margin-bottom:var(--sp-2)">Business</div>
@@ -546,10 +552,10 @@
               <span class="chip chip--outline">${icon('user')} Consumers</span>
             </div>
           </div>
-          <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-3)" data-go="subscription"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('shield')}</span><span class="text-body" style="font-weight:700">Seller plan: ${u.subscription.plan}</span></span><span style="color:var(--ink-faint)">${icon('chevronRight')}</span></button>
+          <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-3)" data-go="subscription"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('shield')}</span><span class="text-body" style="font-weight:700">Seller plan: ${u.subscription.plan}</span></span><span style="color:var(--ink-faint);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('chevronRight')}</span></button>
         ` : ""}
 
-        <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%" data-go="settings"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('settings')}</span><span class="text-body" style="font-weight:700">Settings</span></span><span style="color:var(--ink-faint)">${icon('chevronRight')}</span></button>
+        <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%" data-go="settings"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('settings')}</span><span class="text-body" style="font-weight:700">Settings</span></span><span style="color:var(--ink-faint);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('chevronRight')}</span></button>
       </div>`;
     el.querySelectorAll("[data-go]").forEach(b => b.onclick = () => R.go(b.dataset.go));
     el.querySelector("[data-nav-back]").onclick = () => R.back();
@@ -578,10 +584,21 @@
     el.querySelectorAll("[data-open-listing]").forEach(b => b.onclick = () => R.go("partDetail", { id: b.dataset.openListing }));
   });
   function techRow(t) {
+    const UI = FixUP.UI, icon = UI.icon;
     return `<button class="card card--pressable u-flex u-items-center u-gap-3" style="width:100%;text-align:left" data-open-tech="${t.id}">
-      <span class="avatar avatar-md avatar--verified">${t.initials}</span>
-      <span style="flex:1"><div class="text-body" style="font-weight:700">${t.name}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${FixUP.UI.stars(t.rating, 11)} <span style="margin-left:4px">${t.rating}</span></div></span>
-      <span style="color:var(--ink-faint)">${FixUP.UI.icon('chevronRight')}</span>
+      <span class="avatar avatar-md avatar--verified" style="flex-shrink:0">${t.initials}</span>
+      <span style="flex:1;min-width:0">
+        <div class="u-flex u-items-center u-gap-1">
+          <span class="text-body" style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.name}</span>
+          ${t.verified ? `<span style="width:14px;height:14px;display:block;color:var(--deep-blue);flex-shrink:0">${icon('shield')}</span>` : ""}
+        </div>
+        <div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:2px">${UI.stars(t.rating, 11)} <span style="margin-left:3px">${t.rating} (${t.reviewCount})</span> · ${t.distanceKm}km</div>
+        <div class="u-flex u-items-center u-gap-2" style="margin-top:6px">
+          <span class="chip chip--outline" style="padding:2px 9px;font-size:10.5px">${t.categories[0]}</span>
+          <span class="text-micro text-muted" style="text-transform:none;letter-spacing:0">from ${FixUP.fmt.money(t.priceFrom)}</span>
+        </div>
+      </span>
+      <span style="color:var(--ink-faint);width:18px;height:18px;display:block;flex-shrink:0">${icon('chevronRight')}</span>
     </button>`;
   }
   window.FixUP._techRow = techRow;
@@ -590,9 +607,9 @@
   R.register("settings", (el) => {
     const s = FixUP.Store.get();
     const u = s.users[s.role];
-    const row = (iconName, label, right, hint) => `<div class="card u-flex u-items-center u-justify-between"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon(iconName)}</span><span><div class="text-small" style="font-weight:600">${label}</div>${hint ? `<div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:1px">${hint}</div>` : ""}</span></span>${right}</div>`;
-    const chev = `<span style="color:var(--ink-faint)">${icon('chevronRight')}</span>`;
-    const navRow = (iconName, label, action, hint) => `<button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;text-align:left" data-nav="${action}"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon(iconName)}</span><span><div class="text-small" style="font-weight:600">${label}</div>${hint ? `<div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:1px">${hint}</div>` : ""}</span></span>${chev}</button>`;
+    const row = (iconName, label, right, hint) => `<div class="card u-flex u-items-center u-justify-between"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon(iconName)}</span><span><div class="text-small" style="font-weight:600">${label}</div>${hint ? `<div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:1px">${hint}</div>` : ""}</span></span>${right}</div>`;
+    const chev = `<span style="color:var(--ink-faint);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('chevronRight')}</span>`;
+    const navRow = (iconName, label, action, hint) => `<button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;text-align:left" data-nav="${action}"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon(iconName)}</span><span><div class="text-small" style="font-weight:600">${label}</div>${hint ? `<div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:1px">${hint}</div>` : ""}</span></span>${chev}</button>`;
     const paymentHint = s.role === "consumer" ? "Cards you pay with" : "Payout account & billing card";
     el.innerHTML = `
       ${L.topbar("Settings", { back: true })}
@@ -625,7 +642,7 @@
         <div class="text-micro text-muted" style="margin:0 0 var(--sp-2)">Demo controls</div>
         <div class="card" style="margin-bottom:var(--sp-6)">
           <div class="text-small" style="font-weight:700;margin-bottom:2px">View as</div>
-          <div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-bottom:10px">Pick a role, then switch — this won't happen just from tapping.</div>
+          <div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-bottom:10px">Pick a role, then switch. This won't happen just from tapping.</div>
           <div class="u-flex u-gap-2" style="margin-bottom:12px">
             ${["consumer", "technician", "seller"].map(r => `<button class="chip chip--selectable ${s.role === r ? 'chip--selected' : ''}" data-role="${r}" style="flex:1;justify-content:center">${r[0].toUpperCase() + r.slice(1)}</button>`).join("")}
           </div>

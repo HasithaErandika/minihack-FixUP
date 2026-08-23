@@ -3,7 +3,7 @@
   Per-category kg-of-e-waste-avoided and kg-CO2-avoided figures are rough
   averages derived from published EPA / EU e-waste report category weights
   and typical embodied-carbon-of-manufacture figures for a replacement unit.
-  These are illustrative estimates for a prototype, not a precise LCA model —
+  These are illustrative estimates for a prototype, not a precise LCA model,
   shown transparently on the Impact screen via "How we calculate this".
 */
 window.FixUP = window.FixUP || {};
@@ -19,5 +19,5 @@ window.FixUP.impactFactors = {
   other:        { label: "Other item",      ewasteKg: 3,    co2Kg: 60,  treesPerCo2: 21 }
 };
 
-// Roughly: 1 mature tree absorbs ~21kg CO2/year — used to translate CO2 into a relatable "trees" unit.
+// Roughly: 1 mature tree absorbs ~21kg CO2/year, used to translate CO2 into a relatable "trees" unit.
 window.FixUP.co2ToTrees = (co2Kg) => co2Kg / 21;

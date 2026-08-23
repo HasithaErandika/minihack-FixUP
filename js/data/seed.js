@@ -6,7 +6,7 @@ window.FixUP.seed = function () {
   const daysAgo = (d) => now - d * 24 * 3600 * 1000;
 
   return {
-    role: "consumer", // consumer | technician | seller — swapped by the role switcher
+    role: "consumer", // consumer | technician | seller (swapped by the role switcher)
     onboarded: false,
 
     users: {
@@ -170,7 +170,7 @@ window.FixUP.seed = function () {
         jobId: "j-1",
         jobTitle: "Refrigerator not cooling",
         messages: [
-          { from: "them", text: "Hi Ishara, I've checked the compressor — need to replace the start relay. Should be done today.", at: hrsAgo(4) },
+          { from: "them", text: "Hi Ishara, I've checked the compressor. Need to replace the start relay, should be done today.", at: hrsAgo(4) },
           { from: "me", text: "Sounds good, thank you for the quick update!", at: hrsAgo(3.5) },
           { from: "them", text: "Part sourced from Colombo Spares Hub, fitting it now.", at: hrsAgo(3) }
         ]
@@ -182,7 +182,7 @@ window.FixUP.seed = function () {
         jobId: "j-3",
         jobTitle: "Jacket zipper replacement",
         messages: [
-          { from: "them", text: "Got your request — can you share a photo of the zipper area?", at: hrsAgo(1.5) }
+          { from: "them", text: "Got your request, can you share a photo of the zipper area?", at: hrsAgo(1.5) }
         ]
       }
     ],
@@ -192,7 +192,7 @@ window.FixUP.seed = function () {
       { id: "n-2", type: "badge", text: "You unlocked the \"Eco Starter\" badge", at: daysAgo(1), read: false },
       { id: "n-3", type: "message", text: "New message from Sanduni Rathnayake", at: hrsAgo(1.5), read: false },
       { id: "n-4", type: "payment", text: "Payment of Rs. 8,500 confirmed for your phone repair", at: daysAgo(7), read: true },
-      { id: "n-5", type: "system", text: "Welcome to FixUP — complete your first repair to start earning impact points", at: daysAgo(146), read: true }
+      { id: "n-5", type: "system", text: "Welcome to FixUP. Complete your first repair to start earning impact points", at: daysAgo(146), read: true }
     ],
 
     badges: [

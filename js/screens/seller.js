@@ -11,7 +11,10 @@
     el.innerHTML = `
       <div style="padding:var(--sp-6) var(--sp-4) 0;">
         <div class="u-flex u-justify-between u-items-center" style="margin-bottom:var(--sp-4)">
-          <div><div class="text-small text-muted">${u.businessName}</div><div class="text-h1">Your listings</div></div>
+          <div class="u-flex u-items-center u-gap-2">
+            <img src="assets/logo-mark.png" alt="" style="width:22px;height:auto;flex-shrink:0">
+            <div><div class="text-small text-muted">${u.businessName}</div><div class="text-h1">Your listings</div></div>
+          </div>
           <button class="btn-icon" data-go="notifications">${icon('bell')}${UI.notifBadge(s.notifications.filter(n => !n.read).length)}</button>
         </div>
         <div class="search-bar" style="margin-bottom:var(--sp-4)">${icon('search')}<input placeholder="Search your listings" data-search><button class="btn-icon" style="width:32px;height:32px" data-filter>${icon('filter')}</button></div>
@@ -45,7 +48,7 @@
       ${L.topbar("New listing", { back: true })}
       <div style="padding:0 var(--sp-4)">
         <div class="upload-grid" style="margin-bottom:var(--sp-4)">${[1, 2, 3].map(() => `<div class="upload-tile">${icon('camera')}</div>`).join("")}</div>
-        <div class="text-micro text-muted" style="margin:-8px 0 var(--sp-4);text-transform:none;letter-spacing:0">Clear photos help buyers trust a listing — add up to 6.</div>
+        <div class="text-micro text-muted" style="margin:-8px 0 var(--sp-4);text-transform:none;letter-spacing:0">Clear photos help buyers trust a listing. Add up to 6.</div>
         <div class="u-flex-col u-gap-4">
           <div class="field"><label>Title</label><input type="text" placeholder="e.g. Compressor start relay" data-title></div>
           <div class="field"><label>Category</label><select data-category><option>Electronics</option><option>Appliances</option><option>Vehicles</option><option>Garments</option></select></div>
@@ -118,7 +121,7 @@
         </div>
 
         <div class="card" style="margin-bottom:var(--sp-4)">
-          <div class="text-small" style="font-weight:700;margin-bottom:12px">Revenue — last 7 days</div>
+          <div class="text-small" style="font-weight:700;margin-bottom:12px">Revenue · last 7 days</div>
           <div style="display:flex;align-items:flex-end;gap:8px;height:90px;">
             ${bars.map(v => `<div style="flex:1;background:var(--mid-blue);border-radius:6px 6px 0 0;height:${(v / max) * 76}px"></div>`).join("")}
           </div>
@@ -147,8 +150,8 @@
         </div>
 
         <button class="card card--tint card--pressable u-flex u-items-center u-justify-between" style="width:100%" data-go="subscription">
-          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--deep-blue)">${icon('shield')}</span><span class="text-small" style="font-weight:700">Seller plan: ${u.subscription.plan}</span></span>
-          <span class="u-flex u-items-center u-gap-1" style="color:var(--deep-blue);font-weight:700"><span class="text-small">Manage</span>${icon('chevronRight')}</span>
+          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('shield')}</span><span class="text-small" style="font-weight:700">Seller plan: ${u.subscription.plan}</span></span>
+          <span class="u-flex u-items-center u-gap-1" style="color:var(--deep-blue);font-weight:700"><span class="text-small">Manage</span><span style="width:16px;height:16px;display:block">${icon('chevronRight')}</span></span>
         </button>
       </div>`;
     el.querySelector("[data-go]").onclick = () => R.go("subscription");

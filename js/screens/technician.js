@@ -9,7 +9,10 @@
     el.innerHTML = `
       <div style="padding:var(--sp-6) var(--sp-4) 0;">
         <div class="u-flex u-justify-between u-items-center" style="margin-bottom:var(--sp-4)">
-          <div><div class="text-small text-muted">Welcome back,</div><div class="text-h1">${u.name.split(" ")[0]}</div></div>
+          <div class="u-flex u-items-center u-gap-2">
+            <img src="assets/logo-mark.png" alt="" style="width:22px;height:auto;flex-shrink:0">
+            <div><div class="text-small text-muted">Welcome back,</div><div class="text-h1">${u.name.split(" ")[0]}</div></div>
+          </div>
           <div class="u-flex u-gap-2">
             <button class="btn-icon" data-go="messages">${icon('message')}</button>
             <button class="btn-icon" data-go="notifications">${icon('bell')}${UI.notifBadge(s.notifications.filter(n => !n.read).length)}</button>
@@ -18,12 +21,12 @@
 
         ${u.subscription.status === "trial" ? `
         <div class="card card--tint u-flex u-items-center u-justify-between" style="margin-bottom:var(--sp-4)">
-          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--deep-blue)">${icon('gift')}</span><span class="text-small" style="font-weight:700">${u.subscription.freeJobsRemaining} of ${u.subscription.freeJobsTotal} free jobs left</span></span>
+          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('gift')}</span><span class="text-small" style="font-weight:700">${u.subscription.freeJobsRemaining} of ${u.subscription.freeJobsTotal} free jobs left</span></span>
           <button class="text-small" style="color:var(--deep-blue);font-weight:700" data-go="subscription">Upgrade</button>
         </div>` : `
         <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-4)" data-go="subscription">
-          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--success)">${icon('checkCircle')}</span><span class="text-small" style="font-weight:700">${u.subscription.plan} plan active</span></span>
-          <span style="color:var(--ink-faint)">${icon('chevronRight')}</span>
+          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--success);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('checkCircle')}</span><span class="text-small" style="font-weight:700">${u.subscription.plan} plan active</span></span>
+          <span style="color:var(--ink-faint);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('chevronRight')}</span>
         </button>`}
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-bottom:var(--sp-6)">
@@ -47,19 +50,25 @@
   function activeJobRow(j) {
     const statusClass = { confirmed: "open", "in-progress": "progress" }[j.status] || "open";
     return `<button class="card card--pressable u-flex u-items-center u-gap-3" style="width:100%;text-align:left" data-open-job="${j.id}">
-      <span style="width:40px;height:40px;border-radius:12px;background:var(--mint);color:var(--deep-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${icon('wrench')}</span>
+      <span style="width:22px;height:22px;color:var(--deep-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${icon('wrench')}</span>
       <span style="flex:1"><div class="text-small" style="font-weight:700">${j.title}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${j.location}</div></span>
       <span class="status-badge status-badge--${statusClass}">${j.status.replace("-"," ")}</span>
     </button>`;
   }
+  const JOB_IMG = { phone: "electronics", laptop: "electronics", tv: "electronics", fridge: "appliances", washer: "appliances", garment: "garment", vehicle: "vehicle" };
   function feedCard(j) {
     return `<div class="card">
-      <div class="u-flex u-justify-between u-items-center" style="margin-bottom:6px">
-        <span class="text-body" style="font-weight:700">${j.title}</span>
-        <span class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${j.postedHrsAgo}h ago</span>
+      <div class="u-flex u-gap-3">
+        <img src="assets/illustrations/${JOB_IMG[j.category] || 'other'}.svg" alt="" style="width:52px;height:52px;border-radius:14px;object-fit:cover;flex-shrink:0">
+        <div style="flex:1;min-width:0">
+          <div class="u-flex u-justify-between u-items-center" style="margin-bottom:6px">
+            <span class="text-body" style="font-weight:700">${j.title}</span>
+            <span class="text-micro text-muted" style="text-transform:none;letter-spacing:0;flex-shrink:0">${j.postedHrsAgo}h ago</span>
+          </div>
+          <div class="text-small text-muted"><span style="display:inline-flex;width:12px;height:12px;vertical-align:-2px">${icon('mapPin')}</span> ${j.location} · ${j.distanceKm}km · Budget Rs. ${j.budget}</div>
+        </div>
       </div>
-      <div class="text-small text-muted" style="margin-bottom:10px"><span style="display:inline-flex;width:12px;height:12px;vertical-align:-2px">${icon('mapPin')}</span> ${j.location} · ${j.distanceKm}km · Budget Rs. ${j.budget}</div>
-      <button class="btn btn-primary btn-block btn-sm" data-accept="${j.id}">Accept job</button>
+      <button class="btn btn-primary btn-block btn-sm" style="margin-top:10px" data-accept="${j.id}">Accept job</button>
     </div>`;
   }
 
@@ -74,8 +83,8 @@
         <div class="card u-flex u-justify-between" style="margin-bottom:var(--sp-3)"><span class="text-small text-muted">Location</span><span class="text-small" style="font-weight:700">${job.location}</span></div>
         ${job.quote ? `<div class="card u-flex u-justify-between" style="margin-bottom:var(--sp-3)"><span class="text-small text-muted">Fixed quote</span><span class="text-small tabular" style="font-weight:700">${FixUP.fmt.money(job.quote.amount)}</span></div>` : ""}
         <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-6)" data-go="partsMarket">
-          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--deep-blue)">${icon('box')}</span><span class="text-small" style="font-weight:700">Need a part? Search the pool</span></span>
-          <span style="color:var(--ink-faint)">${icon('chevronRight')}</span>
+          <span class="u-flex u-items-center u-gap-2"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('box')}</span><span class="text-small" style="font-weight:700">Need a part? Search the pool</span></span>
+          <span style="color:var(--ink-faint);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('chevronRight')}</span>
         </button>
       </div>
       <div style="position:sticky;bottom:0;padding:var(--sp-3) var(--sp-4);background:var(--cream);">
@@ -116,14 +125,12 @@
     const s = FixUP.Store.get();
     const l = s.listings.find(l => l.id === params.id) || s.listings[0];
     const saved = s.users.consumer.savedListingIds.includes(l.id);
-    const CAT_ICON = { Electronics: "wrench", Appliances: "box", Vehicles: "wrench", Garments: "leaf" };
-    const heroIcon = CAT_ICON[l.category] || "box";
+    const CAT_IMG = { Electronics: "electronics", Appliances: "appliances", Vehicles: "vehicle", Garments: "garment" };
+    const heroImg = `assets/illustrations/${CAT_IMG[l.category] || "other"}.svg`;
     el.innerHTML = `
       ${L.topbar("Product detail", { back: true, actions: [{ action: "save", icon: saved ? "bookmarkFill" : "bookmark" }] })}
       <div style="padding:0 var(--sp-4)">
-        <div style="width:100%;aspect-ratio:1.5;border-radius:var(--radius-card);background:var(--sky);display:flex;align-items:center;justify-content:center;color:var(--indigo);margin-bottom:var(--sp-2);position:relative;overflow:hidden">
-          <span style="width:64px;height:64px;display:block">${icon(heroIcon)}</span>
-        </div>
+        <img src="${heroImg}" alt="${l.title}" style="width:100%;aspect-ratio:1.5;border-radius:var(--radius-card);object-fit:cover;margin-bottom:var(--sp-2);display:block">
         <div class="u-flex u-gap-1" style="justify-content:center;margin-bottom:var(--sp-4)">
           <span style="width:16px;height:5px;border-radius:999px;background:var(--deep-blue)"></span>
           <span style="width:5px;height:5px;border-radius:999px;background:var(--border-strong)"></span>
@@ -167,7 +174,7 @@
           <div class="text-display tabular">${FixUP.fmt.money(u.earnings.total)}</div>
         </div>
         <div class="card" style="margin-bottom:var(--sp-4)">
-          <div class="text-small" style="font-weight:700;margin-bottom:12px">This week — ${FixUP.fmt.money(u.earnings.thisWeek)}</div>
+          <div class="text-small" style="font-weight:700;margin-bottom:12px">This week · ${FixUP.fmt.money(u.earnings.thisWeek)}</div>
           <div style="display:flex;align-items:flex-end;gap:8px;height:100px;">
             ${u.earnings.history.map(h => `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
               <div style="width:100%;background:var(--mid-blue);border-radius:6px 6px 0 0;height:${Math.max(4, (h.amount/max)*76)}px"></div>
@@ -176,8 +183,8 @@
           </div>
         </div>
         <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-3)" data-go="subscription">
-          <span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('gift')}</span><span class="text-body" style="font-weight:700">Subscription plan</span></span>
-          <span style="color:var(--ink-faint)">${icon('chevronRight')}</span>
+          <span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('gift')}</span><span class="text-body" style="font-weight:700">Subscription plan</span></span>
+          <span style="color:var(--ink-faint);width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">${icon('chevronRight')}</span>
         </button>
         <div class="text-h2" style="margin:var(--sp-4) 0 var(--sp-2)">Points & discounts</div>
         <div class="card u-flex u-justify-between u-items-center">

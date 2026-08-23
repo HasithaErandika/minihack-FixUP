@@ -41,18 +41,19 @@
 
 .fab {
   position: absolute;
-  right: var(--sp-4);
-  bottom: 78px;
+  left: 50%;
+  bottom: 40px;
   width: 56px; height: 56px;
-  border-radius: var(--radius-pill);
+  border-radius: 22px;
   background: var(--deep-blue);
   color: #fff;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: var(--shadow-float);
-  z-index: 30;
+  box-shadow: var(--shadow-float), 0 0 0 4px var(--cream);
+  z-index: 45;
+  transform: translateX(-50%);
   transition: transform var(--dur-fast) var(--ease-out);
 }
-.fab:active { transform: scale(0.94); }
+.fab:active { transform: translateX(-50%) scale(0.94); }
 .fab svg { width: 24px; height: 24px; }
 .fab[hidden] { display: none; }
 
@@ -115,12 +116,14 @@
 .chip--selectable { background: var(--surface); border: 1.5px solid var(--border-strong); color: var(--ink-soft); transition: all var(--dur-fast) var(--ease-out); }
 .chip--selected { background: var(--deep-blue); border-color: var(--deep-blue); color: #fff; }
 .chip--outline { background: transparent; border: 1.5px solid var(--border-strong); color: var(--ink-soft); }
+.chip svg { width: 13px; height: 13px; flex-shrink: 0; }
 
 .status-badge { padding: 5px 10px; border-radius: var(--radius-pill); font-size: var(--fs-micro); font-weight: 700; }
 .status-badge--open { background: var(--sky); color: var(--indigo); }
 .status-badge--progress { background: var(--warning-bg); color: var(--warning); }
 .status-badge--done { background: var(--success-bg); color: var(--success); }
 .status-badge--cancelled { background: var(--danger-bg); color: var(--danger); }
+.status-badge svg { width: 10px; height: 10px; flex-shrink: 0; }
 
 .badge-verified {
   display: inline-flex; align-items: center; gap: 4px;
@@ -136,6 +139,7 @@
   padding: 5px 12px 5px 8px; border-radius: var(--radius-pill);
   font-size: var(--fs-small); font-weight: 700;
 }
+.level-badge svg { width: 14px; height: 14px; flex-shrink: 0; }
 
 /* ---------- Inputs ---------- */
 .field { display: flex; flex-direction: column; gap: 6px; }
@@ -162,7 +166,7 @@
 }
 .field-hint { font-size: var(--fs-micro); color: var(--ink-faint); text-transform: none; letter-spacing: 0; font-weight: 500; }
 
-/* Icon-prefixed input — a .field input, but with a leading icon and optional trailing action */
+/* Icon-prefixed input: a .field input, but with a leading icon and optional trailing action */
 .input-icon {
   display: flex;
   align-items: center;

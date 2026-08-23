@@ -6,7 +6,10 @@
     const t = new Date();
     let h = t.getHours(), m = t.getMinutes();
     const time = (h % 12 || 12) + ":" + String(m).padStart(2, "0");
-    el.innerHTML = `<span>${time}</span><span class="statusbar__icons">${FixUP.UI.icon('signal')}${FixUP.UI.icon('wifi')}${FixUP.UI.icon('battery')}</span>`;
+    el.innerHTML = `<span>${time}</span><span class="statusbar__icons">` +
+      `<span style="width:17px;height:12px;display:block">${FixUP.UI.icon('signal')}</span>` +
+      `<span style="width:12px;height:12px;display:block">${FixUP.UI.icon('wifi')}</span>` +
+      `<span style="width:24px;height:12px;display:block">${FixUP.UI.icon('battery')}</span></span>`;
   }
 
   function wireBottomNav() {
