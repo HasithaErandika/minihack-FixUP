@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+:root{--deep-blue:#3368A0;--mid-blue:#66A3BF;--sage:#C8DFDB;--cream:#FFFFFF;--indigo:#293681;--royal:#4274D9;--sky:#95CCDD;--mint:#D0E7E6;--ink:#1C2430;--ink-soft:#4A5568;--ink-faint:#8792A2;--border:rgba(28,36,48,.10);--border-crisp:rgba(28,36,48,.13);--success:#4C8B6B;--success-bg:#E4F1E8;}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;width:390px;height:844px;background:#0B0E14;border-radius:52px;padding:14px;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;position:relative;overflow:hidden}
+.notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:120px;height:26px;background:#0B0E14;border-radius:0 0 18px 18px;z-index:5}
+.home-indicator{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:120px;height:4px;border-radius:999px;background:rgba(28,36,48,.35);z-index:5}
+.screen{width:100%;height:100%;background:var(--cream);border-radius:38px;overflow:hidden;display:flex;flex-direction:column}
+.statusbar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px 4px;font-size:13px;font-weight:600;color:var(--ink)}
+.content{flex:1;padding:16px 20px 0}
+.h1{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:16px}
+.card{border:1px solid var(--border-crisp);border-radius:18px;padding:16px;margin-bottom:16px}
+.lbl{font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em;font-weight:600;margin-bottom:6px}
+.big{font-size:28px;font-weight:700;color:var(--ink)}
+.chart{display:flex;align-items:flex-end;gap:8px;height:100px;margin-top:14px}
+.bar{flex:1;background:var(--mid-blue);border-radius:6px 6px 0 0}
+.bl{display:flex;gap:8px;margin-top:6px}
+.bl span{flex:1;text-align:center;font-size:10px;color:var(--ink-faint)}
+.chiprow{display:flex;justify-content:space-between;align-items:center}
+.planbtn{display:flex;align-items:center;gap:8px;border:1px solid var(--border-crisp);border-radius:18px;padding:14px;margin-bottom:12px}
+.planbtn svg{width:18px;height:18px;color:var(--deep-blue)}
+.planbtn span{flex:1;font-size:15px;font-weight:700;color:var(--ink)}
+.balcard{border:1px solid var(--border-crisp);border-radius:18px;padding:16px;display:flex;justify-content:space-between;align-items:center}
+.pill{height:38px;padding:0 14px;border-radius:8px;border:1.5px solid var(--border-strong,rgba(28,36,48,.18));display:flex;align-items:center;font-size:13px;font-weight:600;color:var(--deep-blue)}
+</style>
+</helmet>
+<div class="notch"></div>
+<div class="screen">
+  <div class="statusbar"><span>9:41</span><span>••• 100%</span></div>
+  <div class="content">
+    <div class="h1">Earnings</div>
+    <div class="card"><div class="lbl">Total earned</div><div class="big">Rs. 184,500</div></div>
+    <div class="card">
+      <div class="chiprow"><span style="font-size:15px;font-weight:700;color:var(--ink)">This week — Rs. 12,600</span></div>
+      <div class="chart">
+        <div class="bar" style="height:36%"></div><div class="bar" style="height:48%"></div><div class="bar" style="height:18%"></div><div class="bar" style="height:64%"></div><div class="bar" style="height:32%"></div><div class="bar" style="height:54%"></div><div class="bar" style="height:6%"></div>
+      </div>
+      <div class="bl"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+    </div>
+    <div class="planbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 12h18M12 8v13"/></svg><span>Subscription plan</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-faint)"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="balcard"><div><div class="lbl" style="margin-bottom:4px">Available balance</div><div style="font-size:18px;font-weight:700;color:var(--ink)">3,420 pts</div></div><div class="pill">Redeem on parts</div></div>
+  </div>
+</div>
+<div class="home-indicator"></div>
+</x-dc>
+</body>
+</html>

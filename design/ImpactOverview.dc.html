@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+:root{--deep-blue:#3368A0;--mid-blue:#66A3BF;--sage:#C8DFDB;--cream:#FFFFFF;--indigo:#293681;--royal:#4274D9;--sky:#95CCDD;--mint:#D0E7E6;--ink:#1C2430;--ink-soft:#4A5568;--ink-faint:#8792A2;--border:rgba(28,36,48,.10);--border-crisp:rgba(28,36,48,.13);}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;width:390px;height:844px;background:#0B0E14;border-radius:52px;padding:14px;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;position:relative;overflow:hidden}
+.notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:120px;height:26px;background:#0B0E14;border-radius:0 0 18px 18px;z-index:5}
+.home-indicator{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:120px;height:4px;border-radius:999px;background:rgba(28,36,48,.35);z-index:5}
+.screen{width:100%;height:100%;background:var(--cream);border-radius:38px;overflow:hidden;display:flex;flex-direction:column}
+.statusbar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px 4px;font-size:13px;font-weight:600;color:var(--ink)}
+.topbar{display:flex;align-items:center;padding:8px 20px 8px}
+.ttitle{flex:1;font-size:18px;font-weight:700;color:var(--ink)}
+.iconbtn{width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-soft)}
+.content{flex:1;padding:4px 20px;overflow:hidden}
+.ringcard{background:var(--mint);border-radius:18px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:16px}
+.ring{position:relative;width:132px;height:132px;display:flex;align-items:center;justify-content:center}
+.ringlabel{position:absolute;text-align:center}
+.ringlabel .n{font-size:22px;font-weight:700;color:var(--ink)}
+.ringlabel .u{font-size:10px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.lvl{display:inline-flex;align-items:center;gap:6px;background:var(--indigo);color:#fff;padding:5px 12px 5px 8px;border-radius:999px;font-size:13px;font-weight:700}
+.lvl svg{width:14px;height:14px}
+.tolevel{font-size:13px;color:var(--ink-faint)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.stat{border:1px solid var(--border-crisp);border-radius:18px;padding:16px}
+.stat .lbl{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.stat .lbl svg{width:16px;height:16px;color:var(--mid-blue)}
+.stat .val{font-size:22px;font-weight:700;color:var(--ink)}
+.h2{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.badges{display:flex;gap:10px;margin-bottom:20px}
+.badge{width:72px;text-align:center}
+.badge .ic{width:56px;height:56px;border-radius:16px;background:var(--mint);color:var(--deep-blue);display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
+.badge .ic svg{width:26px;height:26px}
+.badge .n{font-size:10px;color:var(--ink-soft);line-height:1.2}
+.lb{border:1px solid var(--border-crisp);border-radius:18px;padding:14px;display:flex;align-items:center;gap:10px}
+.lb svg{width:18px;height:18px;color:var(--deep-blue)}
+</style>
+</helmet>
+<div class="notch"></div>
+<div class="screen">
+  <div class="statusbar"><span>9:41</span><span>••• 100%</span></div>
+  <div class="topbar"><span class="ttitle">Your Impact</span><span class="iconbtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.1"/></svg></span></div>
+  <div class="content">
+    <div class="ringcard">
+      <div class="ring">
+        <svg width="132" height="132"><circle cx="66" cy="66" r="46" stroke="rgba(28,36,48,.12)" stroke-width="10" fill="none"/><circle cx="66" cy="66" r="46" stroke="#3368A0" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="90" transform="rotate(-90 66 66)"/></svg>
+        <div class="ringlabel"><div class="n">1,240</div><div class="u">points</div></div>
+      </div>
+      <div class="lvl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c9-1 14-6 14-16 -10 0-14 6-14 16Z"/><path d="M5 21c2-6 5-9 9-12"/></svg>Repair Regular</div>
+      <div class="tolevel">260 pts to Fix Pro</div>
+    </div>
+    <div class="grid">
+      <div class="stat"><div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4.8a2 2 0 0 1-1.7-3l1.7-2.9"/><path d="M9.3 4.9 7.2 8.4l3.3 2"/><path d="M14.7 4.9H19a2 2 0 0 1 1.7 3l-1 1.8"/></svg>E-waste avoided</div><div class="val">61.4 kg</div></div>
+      <div class="stat"><div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="14" r="4"/><circle cx="15" cy="10" r="5"/></svg>CO₂ avoided</div><div class="val">512 kg</div></div>
+      <div class="stat"><div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-6"/><path d="M12 16c-4 0-6-2.5-6-5.5S8 5 12 5s6 2.5 6 5.5-2 5.5-6 5.5Z"/></svg>Trees equivalent</div><div class="val">24.4</div></div>
+      <div class="stat"><div class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M16 13h3"/></svg>Money saved</div><div class="val">Rs. 38.4k</div></div>
+    </div>
+    <div class="h2">Achievements</div>
+    <div class="badges">
+      <div class="badge"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="6"/><path d="m9 10-3-7M15 10l3-7"/></svg></div><div class="n">First Fix</div></div>
+      <div class="badge"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4 0 6-2.7 6-6 0-3-2-5-3-7 0 2-1.5 3-1.5 3S12 8 12 4c-3 3-6 6.5-6 10 0 3.5 2.5 6 6 6Z"/></svg></div><div class="n">5-Day Streak</div></div>
+      <div class="badge"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c9-1 14-6 14-16 -10 0-14 6-14 16Z"/></svg></div><div class="n">Eco Starter</div></div>
+      <div class="badge"><div class="ic" style="opacity:.5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0Z"/></svg></div><div class="n">50 Fixes</div></div>
+    </div>
+    <div class="lb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0Z"/><path d="M8 5H5a3 3 0 0 0 3 4"/><path d="M16 5h3a3 3 0 0 1-3 4"/></svg><span style="flex:1;font-size:15px;font-weight:700;color:var(--ink)">Leaderboard</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-faint)"><path d="M9 18l6-6-6-6"/></svg></div>
+  </div>
+</div>
+<div class="home-indicator"></div>
+</x-dc>
+</body>
+</html>

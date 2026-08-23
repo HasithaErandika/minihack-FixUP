@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+:root{--deep-blue:#3368A0;--mid-blue:#66A3BF;--sage:#C8DFDB;--cream:#FFFFFF;--indigo:#293681;--royal:#4274D9;--sky:#95CCDD;--mint:#D0E7E6;--ink:#1C2430;--ink-soft:#4A5568;--ink-faint:#8792A2;--border:rgba(28,36,48,.10);--border-crisp:rgba(28,36,48,.13);}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;width:390px;height:844px;background:#0B0E14;border-radius:52px;padding:14px;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;position:relative;overflow:hidden}
+.notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:120px;height:26px;background:#0B0E14;border-radius:0 0 18px 18px;z-index:5}
+.home-indicator{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:120px;height:4px;border-radius:999px;background:rgba(28,36,48,.35);z-index:5}
+.screen{width:100%;height:100%;background:var(--cream);border-radius:38px;overflow:hidden;display:flex;flex-direction:column}
+.statusbar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px 4px;font-size:13px;font-weight:600;color:var(--ink)}
+.content{flex:1;padding:16px 20px 0}
+.h1{font-size:22px;font-weight:700;color:var(--ink);margin-bottom:16px}
+.search{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:999px;padding:10px 14px;margin-bottom:16px}
+.search svg{width:18px;height:18px;color:var(--ink-faint);flex-shrink:0}
+.search span{flex:1;font-size:13px;color:var(--ink-faint)}
+.fbtn{width:32px;height:32px;border-radius:999px;background:#EAE6DA;display:flex;align-items:center;justify-content:center;color:var(--ink-soft)}
+.fbtn svg{width:16px;height:16px}
+.pcard{display:flex;align-items:center;gap:12px;border:1px solid var(--border-crisp);border-radius:18px;padding:14px;margin-bottom:10px}
+.pic{width:48px;height:48px;border-radius:14px;background:var(--sky);color:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pic svg{width:22px;height:22px}
+.ptitle{font-size:13px;font-weight:700;color:var(--ink)}
+.psub{font-size:11px;color:var(--ink-faint);margin-top:2px}
+.pprice{font-size:15px;font-weight:700;color:var(--ink)}
+.elig{display:inline-flex;align-items:center;gap:4px;background:var(--sky);color:var(--indigo);font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;margin-top:4px}
+</style>
+</helmet>
+<div class="notch"></div>
+<div class="screen">
+  <div class="statusbar"><span>9:41</span><span>••• 100%</span></div>
+  <div class="content">
+    <div class="h1">Parts Marketplace</div>
+    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span>Search parts &amp; materials</span><span class="fbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg></span></div>
+    <div class="pcard">
+      <span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg></span>
+      <span style="flex:1"><div class="ptitle">Compressor start relay</div><div class="psub">Colombo Spares Hub · New · 34 in stock</div><span class="elig"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Points eligible</span></span>
+      <span class="pprice">Rs. 1,200</span>
+    </div>
+    <div class="pcard">
+      <span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg></span>
+      <span style="flex:1"><div class="ptitle">Samsung A54 OLED screen</div><div class="psub">TechParts Lanka · New · 8 in stock</div><span class="elig"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>Points eligible</span></span>
+      <span class="pprice">Rs. 7,200</span>
+    </div>
+    <div class="pcard">
+      <span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg></span>
+      <span style="flex:1"><div class="ptitle">Washing machine drain pump</div><div class="psub">Kandy Salvage Co. · Salvaged · 6 in stock</div></span>
+      <span class="pprice">Rs. 1,800</span>
+    </div>
+  </div>
+</div>
+<div class="home-indicator"></div>
+</x-dc>
+</body>
+</html>

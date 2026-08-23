@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+:root{--deep-blue:#3368A0;--mid-blue:#66A3BF;--sage:#C8DFDB;--cream:#FFFFFF;--indigo:#293681;--royal:#4274D9;--sky:#95CCDD;--mint:#D0E7E6;--ink:#1C2430;--ink-soft:#4A5568;--ink-faint:#8792A2;--border:rgba(28,36,48,.10);--border-crisp:rgba(28,36,48,.13);--border-strong:rgba(28,36,48,.18);}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;width:390px;height:844px;background:#0B0E14;border-radius:52px;padding:14px;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;position:relative;overflow:hidden}
+.notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:120px;height:26px;background:#0B0E14;border-radius:0 0 18px 18px;z-index:5}
+.home-indicator{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:120px;height:4px;border-radius:999px;background:rgba(28,36,48,.35);z-index:5}
+.screen{width:100%;height:100%;background:var(--cream);border-radius:38px;overflow:hidden;display:flex;flex-direction:column}
+.statusbar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px 4px;font-size:13px;font-weight:600;color:var(--ink)}
+.topbar{display:flex;align-items:center;gap:12px;padding:8px 20px 8px}
+.iconbtn{width:40px;height:40px;border-radius:999px;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ink-soft)}
+.ttitle{flex:1;font-size:18px;font-weight:700;color:var(--ink)}
+.content{flex:1;padding:4px 20px}
+.h2{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:20px}
+.stepper{display:flex;align-items:center;margin-bottom:24px}
+.step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative}
+.step .line{position:absolute;top:11px;left:-50%;width:100%;height:2px;background:var(--border);z-index:1}
+.step:first-child .line{display:none}
+.step.done .line{background:var(--deep-blue)}
+.dot{width:22px;height:22px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;z-index:2}
+.step.done .dot{background:var(--deep-blue)}
+.step.active .dot{background:var(--mid-blue);box-shadow:0 0 0 4px rgba(102,163,191,.25)}
+.slabel{font-size:10px;font-weight:600;color:var(--ink-faint)}
+.step.done .slabel,.step.active .slabel{color:var(--ink)}
+.card{border:1px solid var(--border-crisp);border-radius:18px;padding:14px;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.avatar{width:44px;height:44px;border-radius:999px;background:var(--sky);color:var(--indigo);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;box-shadow:0 0 0 2.5px #fff,0 0 0 4.5px var(--mid-blue);flex-shrink:0}
+.tname{font-size:13px;font-weight:700;color:var(--ink)}
+.tsub{font-size:11px;color:var(--ink-faint);margin-top:2px}
+.quoterow{display:flex;justify-content:space-between;align-items:center}
+.k{font-size:13px;color:var(--ink-faint)}
+.v{font-size:18px;font-weight:700;color:var(--ink)}
+.notice{background:var(--mint);border-radius:18px;padding:14px;display:flex;gap:10px;align-items:flex-start}
+.notice svg{width:18px;height:18px;color:var(--deep-blue);flex-shrink:0}
+.notice span{font-size:13px;color:var(--ink);line-height:18px}
+.footer{padding:14px 20px}
+.cta{height:48px;border-radius:12px;background:var(--deep-blue);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center}
+</style>
+</helmet>
+<div class="notch"></div>
+<div class="screen">
+  <div class="statusbar"><span>9:41</span><span>••• 100%</span></div>
+  <div class="topbar"><span class="iconbtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg></span><span class="ttitle">Track repair</span></div>
+  <div class="content">
+    <div class="h2">Refrigerator not cooling</div>
+    <div class="stepper">
+      <div class="step done"><div class="line"></div><div class="dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><div class="slabel">Requested</div></div>
+      <div class="step done"><div class="line"></div><div class="dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><div class="slabel">Confirmed</div></div>
+      <div class="step active"><div class="line"></div><div class="dot">3</div><div class="slabel">In progress</div></div>
+      <div class="step"><div class="line"></div><div class="dot">4</div><div class="slabel">Completed</div></div>
+    </div>
+    <div class="card">
+      <div class="avatar">DF</div>
+      <div style="flex:1"><div class="tname">Dinesh Fernando</div><div class="tsub">Assigned technician</div></div>
+      <span class="iconbtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4Z"/></svg></span>
+    </div>
+    <div class="card"><div class="quoterow" style="width:100%"><span class="k">Fixed quote</span><span class="v">Rs. 6,500</span></div></div>
+    <div class="notice">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg>
+      <span>Sourcing part from the spare-parts pooling network...</span>
+    </div>
+  </div>
+  <div class="footer"><div class="cta">Simulate: mark complete</div></div>
+</div>
+<div class="home-indicator"></div>
+</x-dc>
+</body>
+</html>

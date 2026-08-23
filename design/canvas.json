@@ -1,0 +1,40 @@
+{
+  "pages": [
+    { "id": "page-onboarding", "name": "Onboarding & Auth" },
+    { "id": "page-consumer", "name": "Customer Dashboard" },
+    { "id": "page-technician", "name": "Technician Dashboard" },
+    { "id": "page-seller", "name": "Seller Dashboard" },
+    { "id": "page-system", "name": "Design System" }
+  ],
+  "artboards": [
+    { "file": "Splash.dc.html", "x": 0, "y": 0, "w": 390, "h": 844, "page": "page-onboarding" },
+    { "file": "Onboarding.dc.html", "x": 490, "y": 0, "w": 390, "h": 844, "page": "page-onboarding" },
+    { "file": "RoleSelect.dc.html", "x": 980, "y": 0, "w": 390, "h": 844, "page": "page-onboarding" },
+    { "file": "CreateAccount.dc.html", "x": 1470, "y": 0, "w": 390, "h": 844, "page": "page-onboarding" },
+
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 390, "h": 844, "page": "page-consumer" },
+    { "file": "PostRepair.dc.html", "x": 490, "y": 0, "w": 390, "h": 844, "page": "page-consumer" },
+    { "file": "InstantMatch.dc.html", "x": 980, "y": 0, "w": 390, "h": 844, "page": "page-consumer" },
+    { "file": "JobTracking.dc.html", "x": 1470, "y": 0, "w": 390, "h": 844, "page": "page-consumer" },
+    { "file": "RepairComplete.dc.html", "x": 1960, "y": 0, "w": 390, "h": 844, "page": "page-consumer" },
+    { "file": "ImpactOverview.dc.html", "x": 2450, "y": 0, "w": 390, "h": 844, "page": "page-consumer" },
+
+    { "file": "TechJobFeed.dc.html", "x": 0, "y": 0, "w": 390, "h": 844, "page": "page-technician" },
+    { "file": "PartsMarket.dc.html", "x": 490, "y": 0, "w": 390, "h": 844, "page": "page-technician" },
+    { "file": "TechEarnings.dc.html", "x": 980, "y": 0, "w": 390, "h": 844, "page": "page-technician" },
+    { "file": "Subscription.dc.html", "x": 1470, "y": 0, "w": 390, "h": 844, "page": "page-technician" },
+    { "file": "Checkout.dc.html", "x": 1960, "y": 0, "w": 390, "h": 844, "page": "page-technician" },
+
+    { "file": "SellerListings.dc.html", "x": 0, "y": 0, "w": 390, "h": 844, "page": "page-seller" },
+    { "file": "SellerInsights.dc.html", "x": 490, "y": 0, "w": 390, "h": 844, "page": "page-seller" },
+
+    { "file": "DesignSystem.dc.html", "x": 0, "y": 0, "w": 960, "h": 950, "page": "page-system" }
+  ],
+  "annotations": [
+    { "id": "note-onboarding", "x": 0, "y": -70, "w": 320, "text": "Splash → Onboarding → Role select → Create account", "page": "page-onboarding" },
+    { "id": "note-consumer", "x": 0, "y": -70, "w": 340, "text": "Post a repair → match → track → rate → impact", "page": "page-consumer" },
+    { "id": "note-technician", "x": 0, "y": -70, "w": 340, "text": "Job feed → parts → earnings → subscription", "page": "page-technician" },
+    { "id": "note-seller", "x": 0, "y": -70, "w": 320, "text": "Listings dashboard + marketplace insights", "page": "page-seller" }
+  ],
+  "launch": { "view": "canvas", "page": "page-onboarding" }
+}

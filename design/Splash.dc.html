@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+:root{--deep-blue:#3368A0;--mid-blue:#66A3BF;--sage:#C8DFDB;--cream:#FFFFFF;--indigo:#293681;--royal:#4274D9;--sky:#95CCDD;--mint:#D0E7E6;--ink:#1C2430;--ink-soft:#4A5568;--ink-faint:#8792A2;--border:rgba(28,36,48,.10);--border-crisp:rgba(28,36,48,.13);--border-strong:rgba(28,36,48,.18);}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;width:390px;height:844px;background:#0B0E14;border-radius:52px;padding:14px;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;position:relative;overflow:hidden}
+.notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:120px;height:26px;background:#0B0E14;border-radius:0 0 18px 18px;z-index:5}
+.home-indicator{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:120px;height:4px;border-radius:999px;background:rgba(28,36,48,.35);z-index:5}
+.screen{width:100%;height:100%;background:var(--cream);border-radius:38px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.logo-full{width:200px;height:auto;display:block}
+.tagline{font-size:13px;font-weight:500;color:var(--ink-faint)}
+</style>
+</helmet>
+<div class="notch"></div>
+<div class="screen">
+  <img class="logo-full" src="logo-full.png" alt="FixUP">
+  <div class="tagline">Repair, not replace.</div>
+</div>
+<div class="home-indicator"></div>
+</x-dc>
+</body>
+</html>

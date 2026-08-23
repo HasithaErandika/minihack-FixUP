@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+:root{--deep-blue:#3368A0;--mid-blue:#66A3BF;--sage:#C8DFDB;--cream:#FFFFFF;--indigo:#293681;--royal:#4274D9;--sky:#95CCDD;--mint:#D0E7E6;--ink:#1C2430;--ink-soft:#4A5568;--ink-faint:#8792A2;--border:rgba(28,36,48,.10);--border-crisp:rgba(28,36,48,.13);--border-strong:rgba(28,36,48,.18);}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;width:390px;height:844px;background:#0B0E14;border-radius:52px;padding:14px;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;position:relative;overflow:hidden}
+.notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:120px;height:26px;background:#0B0E14;border-radius:0 0 18px 18px;z-index:5}
+.home-indicator{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:120px;height:4px;border-radius:999px;background:rgba(28,36,48,.35);z-index:5}
+.screen{width:100%;height:100%;background:var(--cream);border-radius:38px;overflow:hidden;display:flex;flex-direction:column}
+.statusbar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px 4px;font-size:13px;font-weight:600;color:var(--ink)}
+.top{display:flex;justify-content:flex-end;padding:8px 24px}
+.skip{font-size:13px;font-weight:600;color:var(--deep-blue);padding:8px 4px}
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px;padding:0 32px}
+.icontile{width:120px;height:120px;border-radius:32px;background:var(--mint);color:var(--deep-blue);display:flex;align-items:center;justify-content:center}
+.icontile svg{width:56px;height:56px}
+.title{font-size:28px;line-height:34px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.desc{font-size:15px;line-height:22px;color:var(--ink-faint)}
+.dots{display:flex;justify-content:center;gap:6px;margin:20px 0 24px}
+.dot{height:6px;border-radius:999px;background:var(--border-strong)}
+.dot.active{width:20px;background:var(--deep-blue)}
+.dot:not(.active){width:6px}
+.cta{margin:0 24px 32px;height:48px;border-radius:12px;background:var(--deep-blue);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center}
+</style>
+</helmet>
+<div class="notch"></div>
+<div class="screen">
+  <div class="statusbar"><span>9:41</span><span>••• 100%</span></div>
+  <div class="top"><span class="skip">Skip</span></div>
+  <div class="hero">
+    <div class="icontile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 5 3 7.5 7 9 4-1.5 7-4 7-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>
+    </div>
+    <div class="title">Verified technicians you can trust</div>
+    <div class="desc">ID checks, skill tests, and real reviews on every technician.</div>
+  </div>
+  <div class="dots"><span class="dot"></span><span class="dot active"></span><span class="dot"></span></div>
+  <div class="cta">Next</div>
+</div>
+<div class="home-indicator"></div>
+</x-dc>
+</body>
+</html>

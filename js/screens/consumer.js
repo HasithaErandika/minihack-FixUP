@@ -12,7 +12,7 @@
     el.innerHTML = `
       <div style="padding:var(--sp-6) var(--sp-4) 0;">
         <div class="u-flex u-justify-between u-items-center" style="margin-bottom:var(--sp-4)">
-          <div><div class="text-small text-muted">Good to see you,</div><div class="text-h1">${u.name.split(" ")[0]} 👋</div></div>
+          <div><div class="text-small text-muted">Good to see you,</div><div class="text-h1">${u.name.split(" ")[0]}</div></div>
           <div class="u-flex u-gap-2">
             <button class="btn-icon" data-go="messages">${icon('message')}</button>
             <button class="btn-icon" data-go="notifications">${icon('bell')}${UI.notifBadge(s.notifications.filter(n => !n.read).length)}</button>
@@ -363,7 +363,7 @@
             <span id="ptsChipHost" style="position:relative"></span>
           </div>
           <div class="text-display tabular" id="ptsCount" style="text-align:left">0</div>
-          <div class="progress-bar" style="margin-top:14px"><div class="progress-bar__fill progress-bar__fill--brand" id="fillBar" style="width:0%"></div></div>
+          <div class="progress-bar" style="margin-top:14px"><div class="progress-bar__fill" id="fillBar" style="width:0%;background:var(--deep-blue)"></div></div>
           <div class="text-micro text-muted" style="margin-top:6px;text-transform:none;letter-spacing:0" id="lvlHint"></div>
         </div>
 
