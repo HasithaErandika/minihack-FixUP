@@ -1,15 +1,15 @@
 :root {
-  /* Primary palette */
-  --deep-blue: #3368A0;
-  --mid-blue: #66A3BF;
-  --sage: #C8DFDB;
+  /* Primary palette — matched to the FixUP logo's blue-to-green mark */
+  --deep-blue: #2C4FC4;
+  --mid-blue: #2E9FE0;
+  --sage: #BEE8CE;
   --cream: #FFFFFF;
 
   /* Secondary palette */
-  --indigo: #293681;
-  --royal: #4274D9;
-  --sky: #95CCDD;
-  --mint: #D0E7E6;
+  --indigo: #1A2B7A;
+  --royal: #1565E8;
+  --sky: #7FCBEA;
+  --mint: #CDEFDD;
 
   /* Neutrals derived to sit with the warm cream base */
   --ink: #1C2430;
@@ -22,8 +22,8 @@
   --border-crisp: rgba(28, 36, 48, 0.13);
 
   /* Functional (muted, used sparingly) */
-  --success: #4C8B6B;
-  --success-bg: #E4F1E8;
+  --success: #1FAE73;
+  --success-bg: #E1F6EC;
   --warning: #B8823A;
   --warning-bg: #FBF0DF;
   --danger: #B24B4B;
@@ -63,7 +63,7 @@
   /* Elevation: used sparingly for floating controls and true overlays only, never resting cards */
   --shadow-float: 0 1px 2px rgba(28, 36, 48, 0.06), 0 6px 16px rgba(28, 36, 48, 0.10);
   --shadow-overlay: 0 12px 32px rgba(20, 26, 36, 0.16);
-  --focus-ring: 0 0 0 3px rgba(51, 104, 160, 0.16);
+  --focus-ring: 0 0 0 3px rgba(44, 79, 196, 0.18);
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);

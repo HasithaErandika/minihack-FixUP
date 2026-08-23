@@ -380,18 +380,18 @@
     el.innerHTML = `
       ${L.topbar("Your Impact", { back: true, actions: [{ action: "info", icon: "info" }] })}
       <div style="padding:0 var(--sp-4)">
-        <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);padding:var(--sp-6);background:#EAF3EC;border-color:transparent;">
+        <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);padding:var(--sp-6);background:var(--success-bg);border-color:transparent;">
           <svg viewBox="0 0 40 40" class="ambient-drift" style="width:40px;height:40px;margin-bottom:2px">
-            <path d="M20 34V20" stroke="#3E7A57" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M20 20C20 20 10 20 10 8C17 8 20 13 20 20Z" fill="#66A37F"/>
-            <path d="M20 24C20 24 30 24 30 12C23 12 20 17 20 24Z" fill="#4C8B6B"/>
-            <ellipse cx="20" cy="35" rx="9" ry="2.5" fill="#C8DFDB"/>
+            <path d="M20 34V20" stroke="#128F5E" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M20 20C20 20 10 20 10 8C17 8 20 13 20 20Z" fill="#4FCB93"/>
+            <path d="M20 24C20 24 30 24 30 12C23 12 20 17 20 24Z" fill="var(--success)"/>
+            <ellipse cx="20" cy="35" rx="9" ry="2.5" fill="var(--sage)"/>
           </svg>
           <div class="ring-progress" style="width:132px;height:132px;">
-            <svg width="132" height="132"><circle class="ring-progress__track" cx="66" cy="66" r="${r}" stroke-width="10"/><circle class="ring-progress__fill" id="ring" cx="66" cy="66" r="${r}" stroke-width="10" style="stroke:#4C8B6B" stroke-dasharray="${c}" stroke-dashoffset="${c}"/></svg>
+            <svg width="132" height="132"><circle class="ring-progress__track" cx="66" cy="66" r="${r}" stroke-width="10"/><circle class="ring-progress__fill" id="ring" cx="66" cy="66" r="${r}" stroke-width="10" style="stroke:var(--success)" stroke-dasharray="${c}" stroke-dashoffset="${c}"/></svg>
             <div class="ring-progress__label"><div class="text-h1" id="ringPts">0</div><div class="text-micro text-muted">points</div></div>
           </div>
-          <div class="level-badge ambient-drift" style="max-width:100%;background:#3E7A57">${icon('tree')} ${lvl.levelName}</div>
+          <div class="level-badge ambient-drift" style="max-width:100%;background:#128F5E">${icon('tree')} ${lvl.levelName}</div>
           <div class="text-small text-muted">${lvl.isMax ? "Top tier reached" : `${lvl.pointsForLevel - lvl.pointsIntoLevel} pts to ${lvl.nextLevelName}`}</div>
         </div>
 

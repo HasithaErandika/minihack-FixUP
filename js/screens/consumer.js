@@ -382,14 +382,14 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)">
           <div class="card">
             <div class="u-flex u-items-center u-gap-2" style="margin-bottom:8px">
-              <span style="width:28px;height:28px;border-radius:8px;background:#E4F1E8;color:#4C8B6B;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="width:15px;height:15px;display:block">${icon('recycle')}</span></span>
+              <span style="width:28px;height:28px;border-radius:8px;background:var(--success-bg);color:var(--success);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="width:15px;height:15px;display:block">${icon('recycle')}</span></span>
               <span class="text-micro text-muted">E-waste avoided</span>
             </div>
             <div class="text-h2 tabular" id="statEwaste">0 kg</div>
           </div>
           <div class="card">
             <div class="u-flex u-items-center u-gap-2" style="margin-bottom:8px">
-              <span style="width:28px;height:28px;border-radius:8px;background:#E3EEF8;color:#3368A0;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="width:15px;height:15px;display:block">${icon('co2')}</span></span>
+              <span style="width:28px;height:28px;border-radius:8px;background:#E4EBFB;color:var(--deep-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="width:15px;height:15px;display:block">${icon('co2')}</span></span>
               <span class="text-micro text-muted">CO₂ avoided</span>
             </div>
             <div class="text-h2 tabular" id="statCo2">0 kg</div>

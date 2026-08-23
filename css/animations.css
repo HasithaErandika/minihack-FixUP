@@ -47,7 +47,7 @@
   background: var(--gradient-brand);
   display: flex; align-items: center; justify-content: center;
   color: #fff;
-  box-shadow: 0 12px 32px rgba(41,54,129,0.5);
+  box-shadow: 0 12px 32px rgba(26,43,122,0.5);
   transform: scale(0);
 }
 .levelup-overlay.is-open .levelup-badge { animation: levelBadgeIn 500ms var(--ease-spring) 80ms both; }

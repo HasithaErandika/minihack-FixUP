@@ -212,9 +212,9 @@ FixUP.UI = (function () {
         <rect x="0" y="${h * 0.62}" width="400" height="${h * 0.08}" fill="#CFE1DE"/>
         <rect x="60" y="0" width="${h * 0.09}" height="${h}" fill="#CFE1DE"/>
         <rect x="290" y="0" width="${h * 0.09}" height="${h}" fill="#CFE1DE"/>
-        <rect x="90" y="${h * 0.28}" width="70" height="${h * 0.26}" rx="4" fill="#C8DFDB" opacity="0.7"/>
-        <rect x="230" y="${h * 0.34}" width="90" height="${h * 0.34}" rx="4" fill="#C8DFDB" opacity="0.7"/>
-        <rect x="20" y="${h * 0.72}" width="50" height="${h * 0.2}" rx="4" fill="#C8DFDB" opacity="0.5"/>
+        <rect x="90" y="${h * 0.28}" width="70" height="${h * 0.26}" rx="4" fill="#BEE8CE" opacity="0.7"/>
+        <rect x="230" y="${h * 0.34}" width="90" height="${h * 0.34}" rx="4" fill="#BEE8CE" opacity="0.7"/>
+        <rect x="20" y="${h * 0.72}" width="50" height="${h * 0.2}" rx="4" fill="#BEE8CE" opacity="0.5"/>
         <circle cx="${pins[0].x}" cy="${pins[0].y}" r="70" fill="none" stroke="var(--mid-blue)" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.55"/>
         ${pins.map(pinSvg).join("")}
       </svg>
