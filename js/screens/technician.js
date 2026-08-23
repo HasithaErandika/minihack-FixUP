@@ -50,16 +50,15 @@
   function activeJobRow(j) {
     const statusClass = { confirmed: "open", "in-progress": "progress" }[j.status] || "open";
     return `<button class="card card--pressable u-flex u-items-center u-gap-3" style="width:100%;text-align:left" data-open-job="${j.id}">
-      <span style="width:22px;height:22px;color:var(--deep-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${icon('wrench')}</span>
-      <span style="flex:1"><div class="text-small" style="font-weight:700">${j.title}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${j.location}</div></span>
-      <span class="status-badge status-badge--${statusClass}">${j.status.replace("-"," ")}</span>
+      ${UI.jobImage(j.category, 44, 12)}
+      <span style="flex:1;min-width:0"><div class="text-small" style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${j.title}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${j.location}</div></span>
+      <span class="status-badge status-badge--${statusClass}" style="flex-shrink:0">${j.status.replace("-"," ")}</span>
     </button>`;
   }
-  const JOB_IMG = { phone: "electronics", laptop: "electronics", tv: "electronics", fridge: "appliances", washer: "appliances", garment: "garment", vehicle: "vehicle" };
   function feedCard(j) {
     return `<div class="card">
       <div class="u-flex u-gap-3">
-        <img src="assets/illustrations/${JOB_IMG[j.category] || 'other'}.svg" alt="" style="width:52px;height:52px;border-radius:14px;object-fit:cover;flex-shrink:0">
+        ${UI.jobImage(j.category, 52, 14)}
         <div style="flex:1;min-width:0">
           <div class="u-flex u-justify-between u-items-center" style="margin-bottom:6px">
             <span class="text-body" style="font-weight:700">${j.title}</span>
@@ -78,6 +77,7 @@
     el.innerHTML = `
       ${L.topbar("Job detail", { back: true })}
       <div style="padding:0 var(--sp-4)">
+        <img src="${UI.jobPhotoSrc(job.category)}" alt="" style="width:100%;aspect-ratio:2.2;border-radius:16px;object-fit:cover;margin-bottom:var(--sp-3);display:block">
         <div class="text-h2" style="margin-bottom:6px">${job.title}</div>
         <div class="text-small text-muted" style="margin-bottom:var(--sp-4)">${job.description || ""}</div>
         <div class="card u-flex u-justify-between" style="margin-bottom:var(--sp-3)"><span class="text-small text-muted">Location</span><span class="text-small" style="font-weight:700">${job.location}</span></div>
@@ -126,7 +126,7 @@
     const l = s.listings.find(l => l.id === params.id) || s.listings[0];
     const saved = s.users.consumer.savedListingIds.includes(l.id);
     const CAT_IMG = { Electronics: "electronics", Appliances: "appliances", Vehicles: "vehicle", Garments: "garment" };
-    const heroImg = `assets/illustrations/${CAT_IMG[l.category] || "other"}.svg`;
+    const heroImg = `assets/photos/${CAT_IMG[l.category] || "other"}.jpg`;
     el.innerHTML = `
       ${L.topbar("Product detail", { back: true, actions: [{ action: "save", icon: saved ? "bookmarkFill" : "bookmark" }] })}
       <div style="padding:0 var(--sp-4)">

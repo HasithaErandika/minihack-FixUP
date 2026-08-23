@@ -67,9 +67,9 @@
     const t = s.technicians.find(t => t.id === j.technicianId);
     const statusClass = { matching: "progress", confirmed: "open", "in-progress": "progress", completed: "done", requested: "open" }[j.status] || "open";
     return `<button class="card card--pressable u-flex u-items-center u-gap-3" style="width:100%;text-align:left" data-open-job="${j.id}">
-      <span style="width:22px;height:22px;color:var(--deep-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${icon('wrench')}</span>
-      <span style="flex:1"><div class="text-small" style="font-weight:700">${j.title}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${t ? t.name : "Matching..."}</div></span>
-      <span class="status-badge status-badge--${statusClass}">${j.status.replace("-", " ")}</span>
+      ${UI.jobImage(j.category, 44, 12)}
+      <span style="flex:1;min-width:0"><div class="text-small" style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${j.title}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${t ? t.name : "Matching..."}</div></span>
+      <span class="status-badge status-badge--${statusClass}" style="flex-shrink:0">${j.status.replace("-", " ")}</span>
     </button>`;
   }
 
@@ -160,7 +160,7 @@
         <div class="text-h2" style="margin-bottom:var(--sp-4)">What needs fixing?</div>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2)">
           ${CATS.map(c => `<button class="card card--pressable" data-cat="${c.key}" style="text-align:center;padding:12px 8px 14px">
-            <img src="assets/illustrations/${c.img}.svg" alt="" style="width:100%;aspect-ratio:2;border-radius:10px;object-fit:cover;margin-bottom:6px;display:block">
+            <img src="assets/photos/${c.img}.jpg" alt="" style="width:100%;aspect-ratio:2;border-radius:10px;object-fit:cover;margin-bottom:6px;display:block">
             <div class="text-small" style="font-weight:600">${c.label}</div></button>`).join("")}
         </div></div>`;
       el.querySelector("[data-nav-back]").onclick = () => R.back();
@@ -293,6 +293,7 @@
     el.innerHTML = `
       ${L.topbar("Track repair", { back: true })}
       <div style="padding:0 var(--sp-4)">
+        <img src="${UI.jobPhotoSrc(job.category)}" alt="" style="width:100%;aspect-ratio:2.2;border-radius:16px;object-fit:cover;margin-bottom:var(--sp-3);display:block">
         <div class="text-h2" style="margin-bottom:var(--sp-4)">${job.title}</div>
         <div class="stepper" style="margin-bottom:var(--sp-6)">
           ${STAGES.map((st, i) => `<div class="stepper__step ${i < stageIdx ? 'is-done' : i === stageIdx ? 'is-active' : ''}"><div class="stepper__line"></div><div class="stepper__dot">${i < stageIdx ? icon('check') : i + 1}</div><div class="stepper__label">${st.label}</div></div>`).join("")}

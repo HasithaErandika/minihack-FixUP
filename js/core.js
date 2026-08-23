@@ -1,6 +1,14 @@
 /* Core: state store, level math, router, small UI helpers. Vanilla JS, no framework. */
 window.FixUP = window.FixUP || {};
 
+// Repair-request items use lowercase job category keys (phone, fridge, ...); shared by
+// consumer and technician job screens for a consistent item photo per category.
+FixUP.JOB_CATEGORY_PHOTO = {
+  phone: "electronics", laptop: "electronics", tv: "electronics",
+  fridge: "appliances", washer: "appliances",
+  garment: "garment", vehicle: "vehicle"
+};
+
 /* ---------------- Levels ---------------- */
 FixUP.LEVELS = [
   { name: "Repair Rookie", min: 0 },
@@ -158,16 +166,25 @@ FixUP.UI = (function () {
   }
 
   const CATEGORY_VISUAL = {
-    Electronics: "assets/illustrations/electronics.svg",
-    Appliances: "assets/illustrations/appliances.svg",
-    Vehicles: "assets/illustrations/vehicle.svg",
-    Garments: "assets/illustrations/garment.svg"
+    Electronics: "assets/photos/electronics.jpg",
+    Appliances: "assets/photos/appliances.jpg",
+    Vehicles: "assets/photos/vehicle.jpg",
+    Garments: "assets/photos/garment.jpg"
   };
   function categoryTile(category, size) {
-    const src = CATEGORY_VISUAL[category] || "assets/illustrations/other.svg";
+    const src = CATEGORY_VISUAL[category] || "assets/photos/other.jpg";
     const s = size || 48;
     const r = Math.round(s * 0.3);
     return `<img src="${src}" alt="${category || 'Item'}" style="width:${s}px;height:${s}px;border-radius:${r}px;flex-shrink:0;object-fit:cover;">`;
+  }
+
+  // Repair-request items use lowercase job category keys (phone, fridge, ...) rather than
+  // the Title-case marketplace categories categoryTile() uses — same photo set, different map.
+  function jobPhotoSrc(category) { return `assets/photos/${FixUP.JOB_CATEGORY_PHOTO[category] || "other"}.jpg`; }
+  function jobImage(category, size, radius) {
+    const s = size || 48;
+    const r = radius != null ? radius : Math.round(s * 0.3);
+    return `<img src="${jobPhotoSrc(category)}" alt="" style="width:${s}px;height:${s}px;border-radius:${r}px;flex-shrink:0;object-fit:cover;display:block">`;
   }
 
   function notifBadge(count) {
@@ -182,7 +199,7 @@ FixUP.UI = (function () {
     return out;
   }
 
-  return { icon, toast, openSheet, closeSheet, updateNavActive, animateCount, stars, notifBadge, categoryTile };
+  return { icon, toast, openSheet, closeSheet, updateNavActive, animateCount, stars, notifBadge, categoryTile, jobImage, jobPhotoSrc };
 })();
 
 /* ---------------- Level-up celebration ---------------- */
