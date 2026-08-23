@@ -7,7 +7,9 @@ img, picture { max-width: 100%; display: block; }
 button, input, textarea, select { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: none; }
 a { color: inherit; text-decoration: none; }
-svg { display: block; }
+/* Any <svg> without a more specific sizing rule (see components.css) falls back to this,
+   instead of the browser's 300x150 default replaced-element size. */
+svg { display: block; width: 20px; height: 20px; flex-shrink: 0; }
 
 /* ---------- Page backdrop ---------- */
 body {

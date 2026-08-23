@@ -133,7 +133,11 @@
         <div class="text-body text-muted" style="margin:0 var(--sp-2) var(--sp-6);">Verification builds the trust score consumers see on your profile.</div>
         <div class="u-flex-col u-gap-3" style="padding:0 var(--sp-2)">
           <div class="card u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('shield')}</span><div><div class="text-body" style="font-weight:700">ID verification</div><div class="text-small text-muted">Upload a government-issued ID</div></div></div>
-          <div class="upload-grid" style="grid-template-columns:repeat(3,1fr)"><div class="upload-tile">${icon('camera')}</div></div>
+          <div style="display:flex;justify-content:center;padding:var(--sp-2) 0">
+            <div style="width:96px;height:96px;border-radius:50%;border:1.5px dashed var(--border-strong);background:var(--surface-sunken);display:flex;align-items:center;justify-content:center;color:var(--ink-faint)">
+              <span style="width:26px;height:26px;display:block">${icon('camera')}</span>
+            </div>
+          </div>
           <div class="card u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('wrench')}</span><div><div class="text-body" style="font-weight:700">Skill assessment</div><div class="text-small text-muted">Electronics & Appliances — short quiz</div></div></div>
           <div class="card u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('medal')}</span><div><div class="text-body" style="font-weight:700">VTA certification</div><div class="text-small text-muted">Optional — boosts your trust score</div></div></div>
         </div>
@@ -261,6 +265,39 @@
     };
   });
 
+  /* ---------- Payment methods (role-aware: consumer pays, technician/seller also get paid) ---------- */
+  R.register("paymentMethods", (el) => {
+    const s = FixUP.Store.get();
+    const isBuyerOnly = s.role === "consumer";
+    const cardRow = `<div class="card u-flex u-items-center u-gap-3">
+      <span style="width:38px;height:26px;border-radius:6px;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;">VISA</span>
+      <span style="flex:1"><div class="text-small" style="font-weight:700">Visa •••• 4242</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">Expires 09/28</div></span>
+      <span style="color:var(--deep-blue)">${icon('checkCircle')}</span>
+    </div>`;
+    el.innerHTML = `
+      ${L.topbar("Payment methods", { back: true })}
+      <div style="padding:0 var(--sp-4)">
+        ${!isBuyerOnly ? `
+          <div class="text-h2" style="margin-bottom:var(--sp-2)">Payout account</div>
+          <div class="text-small text-muted" style="margin-bottom:var(--sp-3)">Where your ${s.role === "seller" ? "sales" : "repair"} earnings are deposited.</div>
+          <div class="card u-flex u-items-center u-gap-3" style="margin-bottom:var(--sp-6)">
+            <span style="width:38px;height:38px;border-radius:10px;background:var(--mint);color:var(--deep-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${icon('wallet')}</span>
+            <span style="flex:1"><div class="text-small" style="font-weight:700">Commercial Bank •••• 4821</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">Savings account</div></span>
+            <span style="color:var(--deep-blue)">${icon('checkCircle')}</span>
+          </div>
+          <div class="text-h2" style="margin-bottom:var(--sp-2)">Billing method</div>
+          <div class="text-small text-muted" style="margin-bottom:var(--sp-3)">Used for your subscription plan.</div>
+          ${cardRow}
+        ` : `
+          <div class="text-small text-muted" style="margin-bottom:var(--sp-3)">Cards you use to pay for repairs and marketplace purchases.</div>
+          ${cardRow}
+        `}
+        <button class="btn btn-ghost" style="margin-top:var(--sp-4)" data-add><span style="width:16px;height:16px;display:block">${icon('plus')}</span> Add payment method</button>
+      </div>`;
+    el.querySelector("[data-nav-back]").onclick = () => R.back();
+    el.querySelector("[data-add]").onclick = () => UI.toast("Demo only — one saved method", "info");
+  });
+
   /* ---------- Notifications ---------- */
   R.register("notifications", (el) => {
     const s = FixUP.Store.get();
@@ -341,14 +378,14 @@
     const lvl = FixUP.computeLevel(u.impact.points);
     const r = 46, c = 2 * Math.PI * r;
     el.innerHTML = `
-      ${L.topbar("Your Impact", { actions: [{ action: "info", icon: "info" }] })}
+      ${L.topbar("Your Impact", { back: true, actions: [{ action: "info", icon: "info" }] })}
       <div style="padding:0 var(--sp-4)">
-        <div class="card--tint card" style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);padding:var(--sp-6);">
+        <div class="card" style="display:flex;flex-direction:column;align-items:center;gap:var(--sp-2);padding:var(--sp-6);background:#EAF3EC;border-color:transparent;">
           <div class="ring-progress" style="width:132px;height:132px;">
-            <svg width="132" height="132"><circle class="ring-progress__track" cx="66" cy="66" r="${r}" stroke-width="10"/><circle class="ring-progress__fill" id="ring" cx="66" cy="66" r="${r}" stroke-width="10" stroke-dasharray="${c}" stroke-dashoffset="${c}"/></svg>
+            <svg width="132" height="132"><circle class="ring-progress__track" cx="66" cy="66" r="${r}" stroke-width="10"/><circle class="ring-progress__fill" id="ring" cx="66" cy="66" r="${r}" stroke-width="10" style="stroke:#4C8B6B" stroke-dasharray="${c}" stroke-dashoffset="${c}"/></svg>
             <div class="ring-progress__label"><div class="text-h1" id="ringPts">0</div><div class="text-micro text-muted">points</div></div>
           </div>
-          <div class="level-badge ambient-drift">${icon('leaf')} ${lvl.levelName}</div>
+          <div class="level-badge ambient-drift" style="max-width:100%;background:#3E7A57">${icon('leaf')} ${lvl.levelName}</div>
           <div class="text-small text-muted">${lvl.isMax ? "Top tier reached" : `${lvl.pointsForLevel - lvl.pointsIntoLevel} pts to ${lvl.nextLevelName}`}</div>
         </div>
 
@@ -379,6 +416,7 @@
         </button>
       </div>`;
     el.querySelectorAll("[data-go]").forEach(b => b.onclick = () => R.go(b.dataset.go));
+    el.querySelector("[data-nav-back]").onclick = () => R.back();
     el.querySelector('[data-action="info"]').onclick = () => UI.toast("Estimates use published EPA/EU e-waste averages per category.", "info");
     requestAnimationFrame(() => {
       const pct = lvl.pct / 100;
@@ -456,27 +494,35 @@
   R.register("profile", (el) => {
     const s = FixUP.Store.get();
     const u = s.users[s.role];
-    const lvl = FixUP.computeLevel(u.impact.points);
+    const isSeller = s.role === "seller";
+    const lvl = !isSeller ? FixUP.computeLevel(u.impact.points) : null;
+    const mine = isSeller ? s.listings.filter(l => l.sellerId === u.id) : [];
+
+    const statRow = isSeller
+      ? `<div class="card" style="text-align:center;padding:12px"><div class="text-h2 tabular">${mine.length}</div><div class="text-micro text-muted">listings</div></div>
+         <div class="card" style="text-align:center;padding:12px"><div class="text-h2 tabular">${u.salesSummary.ordersFulfilled}</div><div class="text-micro text-muted">orders</div></div>
+         <div class="card" style="text-align:center;padding:12px"><div class="text-h2 tabular">${FixUP.fmt.money(u.salesSummary.thisMonth).replace('Rs. ', '')}</div><div class="text-micro text-muted">this month</div></div>`
+      : `<div class="card" style="text-align:center;padding:12px"><div class="text-h2 tabular">${u.impact.points.toLocaleString()}</div><div class="text-micro text-muted">points</div></div>
+         <div class="card" style="text-align:center;padding:12px"><div class="text-h2 tabular">${u.impact.ewasteKg}</div><div class="text-micro text-muted">kg saved</div></div>
+         <div class="card" style="text-align:center;padding:12px"><div class="text-h2 tabular">${u.impact.streakDays}</div><div class="text-micro text-muted">day streak</div></div>`;
+
     el.innerHTML = `
-      ${L.topbar("Profile", { actions: [{ action: "edit", icon: "edit" }] })}
+      ${L.topbar("Profile", { back: true, actions: [{ action: "edit", icon: "edit" }] })}
       <div style="padding:0 var(--sp-4)">
         <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:var(--sp-4) 0 var(--sp-6);">
-          <span class="avatar avatar-lg ${s.role === 'technician' ? 'avatar--verified' : ''}">${u.initials}</span>
-          <div class="text-h1">${u.name}${s.role === "seller" ? "" : ""}</div>
-          ${s.role === "seller" ? `<div class="text-small text-muted">${u.businessName}</div>` : ""}
-          <div class="u-flex u-gap-2">
+          <span class="avatar avatar-lg ${s.role !== 'consumer' ? 'avatar--verified' : ''}">${u.initials}</span>
+          <div class="text-h1">${isSeller ? u.businessName : u.name}</div>
+          ${isSeller ? `<div class="text-small text-muted">Run by ${u.name}</div>` : ""}
+          <div class="u-flex u-gap-2" style="flex-wrap:wrap;justify-content:center;max-width:100%">
             ${s.role === "technician" ? `<span class="badge-verified">${icon('shield')} Verified</span>` : ""}
-            <span class="level-badge">${icon('leaf')} ${lvl.levelName}</span>
+            ${isSeller ? `<span class="badge-verified">${icon('shield')} Verified seller</span>` : ""}
+            ${lvl ? `<span class="level-badge" style="max-width:100%">${icon('leaf')} ${lvl.levelName}</span>` : ""}
           </div>
           ${s.role !== "consumer" ? `<div class="u-flex u-items-center u-gap-1">${UI.stars(u.rating)}<span class="text-small text-muted" style="margin-left:4px">${u.rating} (${u.reviewCount})</span></div>` : ""}
           <div class="text-micro text-muted" style="text-transform:none;letter-spacing:0"><span style="display:inline-flex;width:12px;height:12px;vertical-align:-2px">${icon('mapPin')}</span> ${u.location}</div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--sp-2);margin-bottom:var(--sp-6)">
-          <div class="card" style="text-align:center;padding:12px"><div class="text-h2 tabular">${u.impact.points.toLocaleString()}</div><div class="text-micro text-muted">points</div></div>
-          <div class="card" style="text-align:center;padding:12px"><div class="text-h2 tabular">${u.impact.ewasteKg}</div><div class="text-micro text-muted">kg saved</div></div>
-          <div class="card" style="text-align:center;padding:12px"><div class="text-h2 tabular">${u.impact.streakDays}</div><div class="text-micro text-muted">day streak</div></div>
-        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--sp-2);margin-bottom:var(--sp-6)">${statRow}</div>
 
         ${s.role === "technician" ? `
           <div class="text-h2" style="margin-bottom:var(--sp-2)">Portfolio</div>
@@ -490,14 +536,23 @@
         ${s.role === "consumer" ? `
           <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-3)" data-go="saved"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('bookmark')}</span><span class="text-body" style="font-weight:700">Saved items</span></span><span style="color:var(--ink-faint)">${icon('chevronRight')}</span></button>
         ` : ""}
-        ${s.role === "seller" ? `
+        ${isSeller ? `
           <div class="text-h2" style="margin-bottom:var(--sp-2)">Business</div>
-          <div class="card u-flex u-justify-between" style="margin-bottom:var(--sp-6)"><span class="text-small text-muted">Total revenue</span><span class="text-body" style="font-weight:700">${FixUP.fmt.money(u.salesSummary.totalRevenue)}</span></div>
+          <div class="card" style="margin-bottom:var(--sp-3)">
+            <div class="u-flex u-justify-between" style="margin-bottom:8px"><span class="text-small text-muted">Total revenue</span><span class="text-body tabular" style="font-weight:700">${FixUP.fmt.money(u.salesSummary.totalRevenue)}</span></div>
+            <div class="u-flex u-gap-2" style="margin-top:10px"><span class="text-micro text-muted" style="text-transform:none;letter-spacing:0">Sells to</span></div>
+            <div class="u-flex u-gap-2" style="margin-top:6px">
+              <span class="chip chip--outline">${icon('wrench')} Technicians</span>
+              <span class="chip chip--outline">${icon('user')} Consumers</span>
+            </div>
+          </div>
+          <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;margin-bottom:var(--sp-3)" data-go="subscription"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('shield')}</span><span class="text-body" style="font-weight:700">Seller plan: ${u.subscription.plan}</span></span><span style="color:var(--ink-faint)">${icon('chevronRight')}</span></button>
         ` : ""}
 
         <button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%" data-go="settings"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon('settings')}</span><span class="text-body" style="font-weight:700">Settings</span></span><span style="color:var(--ink-faint)">${icon('chevronRight')}</span></button>
       </div>`;
     el.querySelectorAll("[data-go]").forEach(b => b.onclick = () => R.go(b.dataset.go));
+    el.querySelector("[data-nav-back]").onclick = () => R.back();
   });
 
   /* ---------- Saved items (consumer) ---------- */
@@ -515,11 +570,12 @@
         </div>
         <div class="text-h2" style="margin-bottom:var(--sp-2)">Parts & listings</div>
         <div class="u-flex-col u-gap-2">
-          ${listings.map(l => `<div class="card u-flex u-justify-between u-items-center"><span class="text-small" style="font-weight:600">${l.title}</span><span class="text-small tabular" style="font-weight:700">${FixUP.fmt.money(l.price)}</span></div>`).join("") || `<div class="text-small text-muted">No saved listings yet.</div>`}
+          ${listings.map(l => `<button class="card card--pressable u-flex u-items-center u-gap-3" style="width:100%;text-align:left" data-open-listing="${l.id}">${UI.categoryTile(l.category, 44)}<span class="text-small" style="font-weight:600;flex:1">${l.title}</span><span class="text-small tabular" style="font-weight:700">${FixUP.fmt.money(l.price)}</span></button>`).join("") || `<div class="text-small text-muted">No saved listings yet.</div>`}
         </div>
       </div>`;
     el.querySelector("[data-nav-back]").onclick = () => R.back();
     el.querySelectorAll("[data-open-tech]").forEach(b => b.onclick = () => R.go("techProfile", { id: b.dataset.openTech }));
+    el.querySelectorAll("[data-open-listing]").forEach(b => b.onclick = () => R.go("partDetail", { id: b.dataset.openListing }));
   });
   function techRow(t) {
     return `<button class="card card--pressable u-flex u-items-center u-gap-3" style="width:100%;text-align:left" data-open-tech="${t.id}">
@@ -533,37 +589,75 @@
   /* ---------- Settings ---------- */
   R.register("settings", (el) => {
     const s = FixUP.Store.get();
-    const row = (iconName, label, right) => `<div class="card u-flex u-items-center u-justify-between"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon(iconName)}</span><span class="text-small" style="font-weight:600">${label}</span></span>${right}</div>`;
+    const u = s.users[s.role];
+    const row = (iconName, label, right, hint) => `<div class="card u-flex u-items-center u-justify-between"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon(iconName)}</span><span><div class="text-small" style="font-weight:600">${label}</div>${hint ? `<div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:1px">${hint}</div>` : ""}</span></span>${right}</div>`;
+    const chev = `<span style="color:var(--ink-faint)">${icon('chevronRight')}</span>`;
+    const navRow = (iconName, label, action, hint) => `<button class="card card--pressable u-flex u-items-center u-justify-between" style="width:100%;text-align:left" data-nav="${action}"><span class="u-flex u-items-center u-gap-3"><span style="color:var(--deep-blue)">${icon(iconName)}</span><span><div class="text-small" style="font-weight:600">${label}</div>${hint ? `<div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:1px">${hint}</div>` : ""}</span></span>${chev}</button>`;
+    const paymentHint = s.role === "consumer" ? "Cards you pay with" : "Payout account & billing card";
     el.innerHTML = `
       ${L.topbar("Settings", { back: true })}
       <div style="padding:0 var(--sp-4)">
-        <div class="text-micro text-muted" style="margin:var(--sp-2) 0">Demo controls</div>
-        <div class="card" style="margin-bottom:var(--sp-3)">
-          <div class="text-small" style="font-weight:700;margin-bottom:8px">View as</div>
-          <div class="u-flex u-gap-2">
+        <button class="card card--pressable u-flex u-items-center u-gap-3" style="width:100%;margin-bottom:var(--sp-4)" data-go="profile">
+          <span class="avatar avatar-md avatar--verified">${u.initials}</span>
+          <span style="flex:1;text-align:left"><div class="text-body" style="font-weight:700">${s.role === "seller" ? u.businessName : u.name}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">View profile</div></span>
+          ${chev}
+        </button>
+
+        <div class="text-micro text-muted" style="margin:0 0 var(--sp-2)">Account</div>
+        <div class="u-flex-col u-gap-2" style="margin-bottom:var(--sp-4)">
+          ${navRow("edit", "Edit profile", "profile")}
+          ${navRow("wallet", "Payment methods", "paymentMethods", paymentHint)}
+          ${s.role !== "consumer" ? navRow("shield", "Subscription plan", "subscription", u.subscription.plan + " plan") : ""}
+          ${navRow("shield", "Privacy & security", "privacy")}
+        </div>
+
+        <div class="text-micro text-muted" style="margin:0 0 var(--sp-2)">Preferences</div>
+        <div class="u-flex-col u-gap-2" style="margin-bottom:var(--sp-4)">
+          ${row("bell", "Push notifications", `<div class="toggle is-on" data-toggle></div>`)}
+          ${row("message", "WhatsApp bot access", `<div class="toggle" data-toggle></div>`, "Post &amp; track repairs from WhatsApp")}
+          ${row("leaf", "Reduced motion", `<div class="toggle" data-toggle></div>`)}
+          ${row("compass", "Language &amp; region", `<span class="text-small text-muted">English (LK)</span>`)}
+        </div>
+
+        <div class="text-micro text-muted" style="margin:0 0 var(--sp-2)">Support</div>
+        <div class="u-flex-col u-gap-2" style="margin-bottom:var(--sp-4)">${navRow("info", "Help & FAQ", "help")}</div>
+
+        <div class="text-micro text-muted" style="margin:0 0 var(--sp-2)">Demo controls</div>
+        <div class="card" style="margin-bottom:var(--sp-6)">
+          <div class="text-small" style="font-weight:700;margin-bottom:2px">View as</div>
+          <div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-bottom:10px">Pick a role, then switch — this won't happen just from tapping.</div>
+          <div class="u-flex u-gap-2" style="margin-bottom:12px">
             ${["consumer", "technician", "seller"].map(r => `<button class="chip chip--selectable ${s.role === r ? 'chip--selected' : ''}" data-role="${r}" style="flex:1;justify-content:center">${r[0].toUpperCase() + r.slice(1)}</button>`).join("")}
           </div>
+          <button class="btn btn-primary btn-block btn-sm" data-switch-role disabled>Switch view</button>
+          <button class="btn btn-secondary btn-block btn-sm" style="margin-top:8px" data-reset>Reset demo data</button>
         </div>
-        <div class="text-micro text-muted" style="margin:var(--sp-4) 0 var(--sp-2)">Preferences</div>
-        <div class="u-flex-col u-gap-2">
-          ${row("bell", "Push notifications", `<div class="toggle is-on" data-toggle></div>`)}
-          ${row("shield", "Privacy", `<span style="color:var(--ink-faint)">${icon('chevronRight')}</span>`)}
-          ${row("wallet", "Payment methods", `<span style="color:var(--ink-faint)">${icon('chevronRight')}</span>`)}
-          ${row("message", "WhatsApp bot access", `<div class="toggle" data-toggle></div>`)}
-          ${row("leaf", "Reduced motion", `<div class="toggle" data-toggle></div>`)}
+
+        <div style="text-align:center;margin-bottom:var(--sp-4)">
+          <button class="btn btn-sm" style="background:var(--danger-bg);color:var(--danger);padding:0 20px" data-logout><span style="width:15px;height:15px;display:block">${icon('logout')}</span> Log out</button>
         </div>
-        <div class="text-micro text-muted" style="margin:var(--sp-4) 0 var(--sp-2)">Support</div>
-        <div class="u-flex-col u-gap-2" style="margin-bottom:var(--sp-6)">${row("info", "Help & FAQ", `<span style="color:var(--ink-faint)">${icon('chevronRight')}</span>`)}</div>
-        <button class="btn btn-secondary btn-block" data-reset>Reset demo data</button>
-        <button class="btn btn-ghost btn-block" style="color:var(--danger);margin-top:8px" data-logout>${icon('logout')} Log out</button>
       </div>`;
     el.querySelector("[data-nav-back]").onclick = () => R.back();
+    el.querySelector('[data-go="profile"]').onclick = () => R.go("profile");
     el.querySelectorAll("[data-toggle]").forEach(t => t.onclick = () => t.classList.toggle("is-on"));
-    el.querySelectorAll("[data-role]").forEach(b => b.onclick = () => {
-      A.switchRole(b.dataset.role);
-      R.replaceStack(DEFAULT_HOME[b.dataset.role]);
-      UI.toast(`Viewing as ${b.dataset.role}`, "user");
+    el.querySelectorAll("[data-nav]").forEach(b => b.onclick = () => {
+      const target = b.dataset.nav;
+      if (target === "profile" || target === "paymentMethods" || target === "subscription") R.go(target);
+      else UI.toast("Coming soon in a future update", "info");
     });
+
+    let pendingRole = s.role;
+    const switchBtn = el.querySelector("[data-switch-role]");
+    el.querySelectorAll("[data-role]").forEach(b => b.onclick = () => {
+      pendingRole = b.dataset.role;
+      el.querySelectorAll("[data-role]").forEach(x => x.classList.toggle("chip--selected", x.dataset.role === pendingRole));
+      switchBtn.disabled = pendingRole === s.role;
+    });
+    switchBtn.onclick = () => {
+      A.switchRole(pendingRole);
+      R.replaceStack(DEFAULT_HOME[pendingRole]);
+      UI.toast(`Viewing as ${pendingRole}`, "user");
+    };
     el.querySelector("[data-reset]").onclick = () => { A.resetDemo(); R.replaceStack("splash"); };
     el.querySelector("[data-logout]").onclick = () => { A.resetDemo(); R.replaceStack("splash"); };
   });

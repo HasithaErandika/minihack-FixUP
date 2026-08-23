@@ -30,7 +30,7 @@ FixUP.computeLevel = function (points) {
 
 /* ---------------- Store ---------------- */
 FixUP.Store = (function () {
-  const KEY = "fixup_state_v1";
+  const KEY = "fixup_state_v2";
   let state = null;
   const subs = {};
 
@@ -157,6 +157,19 @@ FixUP.UI = (function () {
     requestAnimationFrame(frame);
   }
 
+  const CATEGORY_VISUAL = {
+    Electronics: { icon: "wrench", bg: "var(--sky)", fg: "var(--indigo)" },
+    Appliances: { icon: "box", bg: "var(--mint)", fg: "var(--deep-blue)" },
+    Vehicles: { icon: "wrench", bg: "var(--sage)", fg: "var(--deep-blue)" },
+    Garments: { icon: "leaf", bg: "var(--mint)", fg: "var(--deep-blue)" }
+  };
+  function categoryTile(category, size) {
+    const v = CATEGORY_VISUAL[category] || { icon: "box", bg: "var(--sky)", fg: "var(--indigo)" };
+    const s = size || 48;
+    const iconSize = Math.round(s * 0.46);
+    return `<span style="width:${s}px;height:${s}px;border-radius:${Math.round(s * 0.3)}px;background:${v.bg};color:${v.fg};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="width:${iconSize}px;height:${iconSize}px;display:block">${icon(v.icon)}</span></span>`;
+  }
+
   function notifBadge(count) {
     return count > 0 ? `<span class="notif-dot">${count > 9 ? "9+" : count}</span>` : "";
   }
@@ -169,7 +182,7 @@ FixUP.UI = (function () {
     return out;
   }
 
-  return { icon, toast, openSheet, closeSheet, updateNavActive, animateCount, stars, notifBadge };
+  return { icon, toast, openSheet, closeSheet, updateNavActive, animateCount, stars, notifBadge, categoryTile };
 })();
 
 /* ---------------- Level-up celebration ---------------- */

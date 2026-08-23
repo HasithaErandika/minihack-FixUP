@@ -19,16 +19,16 @@
           </div>
         </div>
 
-        <button class="card card--pressable" style="width:100%;text-align:left;display:flex;align-items:center;gap:var(--sp-3);background:${cssGradient()};border:none;color:#fff;" data-go="impact">
+        <button class="card card--pressable" style="width:100%;box-sizing:border-box;max-width:100%;text-align:left;display:flex;align-items:center;gap:var(--sp-3);background:${cssGradient()};border:none;color:#fff;" data-go="impact">
           <div class="ambient-drift" style="width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="width:24px;height:24px;display:block">${icon('leaf')}</span></div>
-          <div style="flex:1">
-            <div class="text-small" style="opacity:0.85">${lvl.levelName} · ${u.impact.points.toLocaleString()} pts</div>
+          <div style="flex:1;min-width:0">
+            <div class="text-small" style="opacity:0.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${lvl.levelName} · ${u.impact.points.toLocaleString()} pts</div>
             <div class="progress-bar" style="background:rgba(255,255,255,0.25);margin-top:6px"><div class="progress-bar__fill" style="width:${lvl.pct}%;background:#fff"></div></div>
           </div>
-          <span style="opacity:0.85">${icon('chevronRight')}</span>
+          <span style="opacity:0.85;flex-shrink:0">${icon('chevronRight')}</span>
         </button>
 
-        <button class="btn btn-primary btn-block" style="margin-top:var(--sp-4)" data-go="postRepair">${icon('plus')} Post a repair request</button>
+        <button class="btn btn-primary btn-block" style="margin-top:var(--sp-4)" data-go="postRepair"><span style="width:18px;height:18px;display:block">${icon('plus')}</span> Post a repair request</button>
 
         ${active.length ? `
           <div class="text-h2" style="margin:var(--sp-6) 0 var(--sp-2)">Active repairs</div>
@@ -80,7 +80,7 @@
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);margin-bottom:var(--sp-6)">
           ${s.categories.slice(0, 6).map(c => `
             <button class="card card--pressable" style="text-align:center;padding:14px 8px" data-cat="${c.key}">
-              <div style="width:34px;height:34px;border-radius:10px;background:var(--mint);color:var(--deep-blue);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;">${icon(catIcon(c.key))}</div>
+              <div style="width:26px;height:26px;color:var(--deep-blue);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">${icon(catIcon(c.key))}</div>
               <div class="text-micro" style="text-transform:none;letter-spacing:0;font-weight:600">${c.label}</div>
             </button>`).join("")}
         </div>
@@ -106,9 +106,9 @@
         <div style="text-align:center;padding:var(--sp-2) 0 var(--sp-6)">
           <span class="avatar avatar-lg avatar--verified" style="margin:0 auto">${t.initials}</span>
           <div class="text-h1" style="margin-top:10px">${t.name}</div>
-          <div class="u-flex u-gap-2" style="justify-content:center;margin-top:6px">
-            <span class="badge-verified">${icon('shield')} Verified</span>
-            <span class="level-badge">${icon('leaf')} ${t.levelName}</span>
+          <div class="u-flex u-gap-2" style="justify-content:center;flex-wrap:wrap;max-width:100%;margin-top:6px">
+            <span class="badge-verified" style="max-width:100%">${icon('shield')} Verified</span>
+            <span class="level-badge" style="max-width:100%">${icon('leaf')} ${t.levelName}</span>
           </div>
           <div class="u-flex u-items-center u-gap-1" style="justify-content:center;margin-top:8px">${UI.stars(t.rating)}<span class="text-small text-muted" style="margin-left:6px">${t.rating} (${t.reviewCount} reviews)</span></div>
           <div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:4px"><span style="display:inline-flex;width:12px;height:12px;vertical-align:-2px">${icon('mapPin')}</span> ${t.location} · ${t.distanceKm}km away</div>
@@ -119,10 +119,17 @@
           <div class="card u-flex u-justify-between"><span class="text-small" style="font-weight:600">Fridge compressor swap</span><span class="chip chip--outline">Appliances</span></div>
           <div class="card u-flex u-justify-between"><span class="text-small" style="font-weight:600">Laptop motherboard reflow</span><span class="chip chip--outline">Electronics</span></div>
         </div>
-        <div class="text-h2" style="margin-bottom:var(--sp-2)">Reviews</div>
-        <div class="card" style="margin-bottom:var(--sp-6)">
-          <div class="u-flex u-justify-between"><span class="text-small" style="font-weight:700">Amaya G.</span>${UI.stars(5, 12)}</div>
-          <div class="text-small text-muted" style="margin-top:4px">"Quick, fair price, explained everything before starting."</div>
+        <div class="text-h2" style="margin-bottom:var(--sp-3)">Reviews</div>
+        <div class="u-flex u-items-center u-gap-3" style="margin-bottom:var(--sp-4)">
+          <span class="text-display" style="font-size:26px">${t.rating}</span>
+          <div>${UI.stars(t.rating, 13)}<div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:2px">${t.reviewCount} reviews</div></div>
+        </div>
+        <div style="margin-bottom:var(--sp-2)">
+          <div class="u-flex u-items-center u-gap-3" style="margin-bottom:8px">
+            <span class="avatar avatar-sm">AG</span>
+            <span><div class="text-small" style="font-weight:700">Amaya G.</div>${UI.stars(5, 11)}</span>
+          </div>
+          <p class="text-small text-soft" style="line-height:20px;margin:0">Quick, fair price, explained everything before starting.</p>
         </div>
       </div>
       <div style="position:sticky;bottom:0;padding:var(--sp-3) var(--sp-4);background:var(--cream);">
@@ -150,7 +157,7 @@
         <div class="text-h2" style="margin-bottom:var(--sp-4)">What needs fixing?</div>
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2)">
           ${CATS.map(c => `<button class="card card--pressable" data-cat="${c.key}" style="text-align:center;padding:16px 8px">
-            <div style="width:34px;height:34px;border-radius:10px;background:var(--mint);color:var(--deep-blue);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;">${icon(c.icon)}</div>
+            <div style="width:28px;height:28px;color:var(--deep-blue);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">${icon(c.icon)}</div>
             <div class="text-small" style="font-weight:600">${c.label}</div></button>`).join("")}
         </div></div>`;
       el.querySelector("[data-nav-back]").onclick = () => R.back();
@@ -368,8 +375,20 @@
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);margin-top:var(--sp-4)">
-          <div class="card"><div class="text-micro text-muted">${icon('recycle')} E-waste avoided</div><div class="text-h2 tabular" id="statEwaste">0 kg</div></div>
-          <div class="card"><div class="text-micro text-muted">${icon('co2')} CO₂ avoided</div><div class="text-h2 tabular" id="statCo2">0 kg</div></div>
+          <div class="card">
+            <div class="u-flex u-items-center u-gap-2" style="margin-bottom:8px">
+              <span style="width:28px;height:28px;border-radius:8px;background:#E4F1E8;color:#4C8B6B;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="width:15px;height:15px;display:block">${icon('recycle')}</span></span>
+              <span class="text-micro text-muted">E-waste avoided</span>
+            </div>
+            <div class="text-h2 tabular" id="statEwaste">0 kg</div>
+          </div>
+          <div class="card">
+            <div class="u-flex u-items-center u-gap-2" style="margin-bottom:8px">
+              <span style="width:28px;height:28px;border-radius:8px;background:#E3EEF8;color:#3368A0;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="width:15px;height:15px;display:block">${icon('co2')}</span></span>
+              <span class="text-micro text-muted">CO₂ avoided</span>
+            </div>
+            <div class="text-h2 tabular" id="statCo2">0 kg</div>
+          </div>
         </div>
 
         <button class="btn btn-primary btn-block" style="margin-top:var(--sp-8)" data-done>Back to Home</button>

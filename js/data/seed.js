@@ -71,7 +71,7 @@ window.FixUP.seed = function () {
         joinedDate: daysAgo(300),
         rating: 4.6,
         reviewCount: 58,
-        salesSummary: { totalRevenue: 612000, thisMonth: 84500, ordersFulfilled: 214 },
+        salesSummary: { totalRevenue: 612000, thisMonth: 84500, ordersFulfilled: 214, growthPct: 12, avgOrderValue: 3950, buyerSplit: { technician: 68, consumer: 32 }, categorySplit: [{ label: "Appliances", pct: 46 }, { label: "Electronics", pct: 39 }, { label: "Other", pct: 15 }] },
         subscription: { status: "active", plan: "Growth", price: 3500 }
       }
     },
@@ -147,18 +147,19 @@ window.FixUP.seed = function () {
     ],
 
     listings: [
-      { id: "l-1", sellerId: "u-seller", sellerName: "Colombo Spares Hub", title: "Compressor start relay (universal)", category: "Appliances", condition: "New", price: 1200, stock: 34, pointsDiscountable: true },
-      { id: "l-2", sellerId: "u-seller", sellerName: "Colombo Spares Hub", title: "LG fridge door gasket", category: "Appliances", condition: "New", price: 3400, stock: 12, pointsDiscountable: true },
-      { id: "l-3", sellerId: "s-2", sellerName: "TechParts Lanka", title: "Samsung A54 OLED screen assembly", category: "Electronics", condition: "New", price: 7200, stock: 8, pointsDiscountable: true },
-      { id: "l-4", sellerId: "s-2", sellerName: "TechParts Lanka", title: "Laptop motherboard (refurbished, i5 8th gen)", category: "Electronics", condition: "Refurbished", price: 9500, stock: 3, pointsDiscountable: false },
-      { id: "l-5", sellerId: "s-3", sellerName: "Kandy Salvage Co.", title: "Washing machine drain pump", category: "Appliances", condition: "Salvaged", price: 1800, stock: 6, pointsDiscountable: true },
-      { id: "l-6", sellerId: "u-seller", sellerName: "Colombo Spares Hub", title: "Universal TV mainboard (assorted)", category: "Electronics", condition: "Used", price: 4200, stock: 5, pointsDiscountable: false }
+      { id: "l-1", sellerId: "u-seller", sellerName: "Colombo Spares Hub", sellerRating: 4.6, title: "Compressor start relay (universal)", category: "Appliances", condition: "New", price: 1200, stock: 34, pointsDiscountable: true },
+      { id: "l-2", sellerId: "u-seller", sellerName: "Colombo Spares Hub", sellerRating: 4.6, title: "LG fridge door gasket", category: "Appliances", condition: "New", price: 3400, stock: 12, pointsDiscountable: true },
+      { id: "l-3", sellerId: "s-2", sellerName: "TechParts Lanka", sellerRating: 4.7, title: "Samsung A54 OLED screen assembly", category: "Electronics", condition: "New", price: 7200, stock: 8, pointsDiscountable: true },
+      { id: "l-4", sellerId: "s-2", sellerName: "TechParts Lanka", sellerRating: 4.7, title: "Laptop motherboard (refurbished, i5 8th gen)", category: "Electronics", condition: "Refurbished", price: 9500, stock: 3, pointsDiscountable: false },
+      { id: "l-5", sellerId: "s-3", sellerName: "Kandy Salvage Co.", sellerRating: 4.3, title: "Washing machine drain pump", category: "Appliances", condition: "Salvaged", price: 1800, stock: 6, pointsDiscountable: true },
+      { id: "l-6", sellerId: "u-seller", sellerName: "Colombo Spares Hub", sellerRating: 4.6, title: "Universal TV mainboard (assorted)", category: "Electronics", condition: "Used", price: 4200, stock: 5, pointsDiscountable: false }
     ],
 
     orders: [
-      { id: "o-1", listingId: "l-1", listingTitle: "Compressor start relay (universal)", buyerName: "Dinesh Fernando", quantity: 1, status: "fulfilled", pointsApplied: 0, createdAt: hrsAgo(21) },
-      { id: "o-2", listingId: "l-2", listingTitle: "LG fridge door gasket", buyerName: "Nimal Wickrama", quantity: 1, status: "pending", pointsApplied: 200, createdAt: hrsAgo(5) },
-      { id: "o-3", listingId: "l-6", listingTitle: "Universal TV mainboard (assorted)", buyerName: "Kasun Bandara", quantity: 2, status: "shipped", pointsApplied: 0, createdAt: daysAgo(2) }
+      { id: "o-1", listingId: "l-1", listingTitle: "Compressor start relay (universal)", buyerName: "Dinesh Fernando", buyerType: "technician", quantity: 1, status: "fulfilled", pointsApplied: 0, createdAt: hrsAgo(21) },
+      { id: "o-2", listingId: "l-2", listingTitle: "LG fridge door gasket", buyerName: "Nimal Wickrama", buyerType: "technician", quantity: 1, status: "pending", pointsApplied: 200, createdAt: hrsAgo(5) },
+      { id: "o-3", listingId: "l-6", listingTitle: "Universal TV mainboard (assorted)", buyerName: "Kasun Bandara", buyerType: "technician", quantity: 2, status: "shipped", pointsApplied: 0, createdAt: daysAgo(2) },
+      { id: "o-4", listingId: "l-1", listingTitle: "Compressor start relay (universal)", buyerName: "Amaya Gunasekara", buyerType: "consumer", quantity: 1, status: "pending", pointsApplied: 0, createdAt: hrsAgo(2) }
     ],
 
     conversations: [

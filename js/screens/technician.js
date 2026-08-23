@@ -103,12 +103,12 @@
   });
   function listingCard(l) {
     return `<button class="card card--pressable u-flex u-items-center u-gap-3" style="width:100%;text-align:left" data-open="${l.id}">
-      <span style="width:48px;height:48px;border-radius:14px;background:var(--sky);color:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${icon('box')}</span>
-      <span style="flex:1">
-        <div class="text-small" style="font-weight:700">${l.title}</div>
-        <div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${l.sellerName} · ${l.condition} · ${l.stock} in stock</div>
+      ${UI.categoryTile(l.category, 52)}
+      <span style="flex:1;min-width:0">
+        <div class="text-small" style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${l.title}</div>
+        <div class="text-micro text-muted" style="text-transform:none;letter-spacing:0;margin-top:2px">${l.sellerName} · ${l.condition} · ${l.stock} in stock</div>
       </span>
-      <span class="text-body tabular" style="font-weight:700">${FixUP.fmt.money(l.price)}</span>
+      <span class="text-body tabular" style="font-weight:700;flex-shrink:0">${FixUP.fmt.money(l.price)}</span>
     </button>`;
   }
 
@@ -116,16 +116,32 @@
     const s = FixUP.Store.get();
     const l = s.listings.find(l => l.id === params.id) || s.listings[0];
     const saved = s.users.consumer.savedListingIds.includes(l.id);
+    const CAT_ICON = { Electronics: "wrench", Appliances: "box", Vehicles: "wrench", Garments: "leaf" };
+    const heroIcon = CAT_ICON[l.category] || "box";
     el.innerHTML = `
-      ${L.topbar("Part detail", { back: true, actions: [{ action: "save", icon: saved ? "bookmarkFill" : "bookmark" }] })}
+      ${L.topbar("Product detail", { back: true, actions: [{ action: "save", icon: saved ? "bookmarkFill" : "bookmark" }] })}
       <div style="padding:0 var(--sp-4)">
-        <div style="width:100%;aspect-ratio:1.6;border-radius:var(--radius-card);background:var(--sky);display:flex;align-items:center;justify-content:center;color:var(--indigo);margin-bottom:var(--sp-4)"><span style="width:56px;height:56px;display:block">${icon('box')}</span></div>
+        <div style="width:100%;aspect-ratio:1.5;border-radius:var(--radius-card);background:var(--sky);display:flex;align-items:center;justify-content:center;color:var(--indigo);margin-bottom:var(--sp-2);position:relative;overflow:hidden">
+          <span style="width:64px;height:64px;display:block">${icon(heroIcon)}</span>
+        </div>
+        <div class="u-flex u-gap-1" style="justify-content:center;margin-bottom:var(--sp-4)">
+          <span style="width:16px;height:5px;border-radius:999px;background:var(--deep-blue)"></span>
+          <span style="width:5px;height:5px;border-radius:999px;background:var(--border-strong)"></span>
+          <span style="width:5px;height:5px;border-radius:999px;background:var(--border-strong)"></span>
+        </div>
         <div class="text-h1" style="margin-bottom:6px">${l.title}</div>
         <div class="text-h2 tabular" style="color:var(--deep-blue);margin-bottom:10px">${FixUP.fmt.money(l.price)}</div>
-        <div class="u-flex u-gap-2" style="margin-bottom:var(--sp-4)"><span class="chip chip--outline">${l.condition}</span><span class="chip chip--outline">${l.stock} in stock</span>${l.pointsDiscountable ? `<span class="chip">${icon('ticket')} Points eligible</span>` : ""}</div>
+        <div class="u-flex u-gap-2" style="margin-bottom:var(--sp-4);flex-wrap:wrap"><span class="chip chip--outline">${l.category}</span><span class="chip chip--outline">${l.condition}</span><span class="chip chip--outline">${l.stock} in stock</span>${l.pointsDiscountable ? `<span class="chip">${icon('ticket')} Points eligible</span>` : ""}</div>
+
+        <div class="card" style="margin-bottom:var(--sp-4)">
+          <div class="u-flex u-justify-between" style="margin-bottom:8px"><span class="text-small text-muted">Category</span><span class="text-small" style="font-weight:700">${l.category}</span></div>
+          <div class="u-flex u-justify-between" style="margin-bottom:8px"><span class="text-small text-muted">Condition</span><span class="text-small" style="font-weight:700">${l.condition}</span></div>
+          <div class="u-flex u-justify-between"><span class="text-small text-muted">Fit</span><span class="text-small" style="font-weight:700">Universal / multi-model</span></div>
+        </div>
+
         <div class="card u-flex u-items-center u-gap-3" style="margin-bottom:var(--sp-6)">
           <span class="avatar avatar-md">${l.sellerName[0]}</span>
-          <span><div class="text-small" style="font-weight:700">${l.sellerName}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">Verified seller</div></span>
+          <span style="flex:1"><div class="text-small" style="font-weight:700">${l.sellerName}</div><div class="text-micro text-muted" style="text-transform:none;letter-spacing:0">${UI.stars(l.sellerRating || 4.5, 11)} <span style="margin-left:4px">${l.sellerRating || 4.5} · Verified seller</span></div></span>
         </div>
       </div>
       <div style="position:sticky;bottom:0;padding:var(--sp-3) var(--sp-4);background:var(--cream);display:flex;gap:8px;">
